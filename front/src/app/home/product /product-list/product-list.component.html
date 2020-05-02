@@ -1,0 +1,7 @@
+<div class="product-cards-container">
+  <app-product-card-small
+    *ngFor="let product of products$ | async"
+    [product]="product"
+  >
+  </app-product-card-small>
+</div>

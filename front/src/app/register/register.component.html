@@ -1,0 +1,61 @@
+<h1>Wallarock</h1>
+<div class="container">
+  <form [formGroup]="form" class="form-container">
+    <div class="form-field-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="name" />
+        <mat-error>Introduce un nombre valido</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-error>Introduce un email válido</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error>La contraseña debe tener al menos 6 caracteres</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Confirma contraseña</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" />
+        <mat-error>Las contraseñas no coinciden</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field-row">
+      <button
+        mat-raised-button
+        class="select-location-btn"
+        color="primary"
+        (click)="selectLocation()"
+      >
+        Selecciona ubicacion
+      </button>
+      <mat-error *ngIf="form.controls.coordinates.invalid"
+        >Selecciona tu ubicacion</mat-error
+      >
+    </div>
+    <div class="form-field-row"></div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!isCorrectForm"
+      (click)="registerUser()"
+    >
+      Registrate
+    </button>
+  </form>
+</div>
+
+<ng-template ad-host></ng-template>

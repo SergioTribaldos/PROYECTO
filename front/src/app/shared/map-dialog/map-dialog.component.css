@@ -1,0 +1,12 @@
+.map-container {
+  height: 500px;
+}
+
+.spinner-container {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  left: 43%;
+  bottom: 56%;
+  z-index: 2000;
+}

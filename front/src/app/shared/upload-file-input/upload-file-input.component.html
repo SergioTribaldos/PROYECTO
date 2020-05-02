@@ -1,0 +1,20 @@
+<div
+  class="container"
+  [ngClass]="{
+    'image-loaded': base64Image,
+    'image-not-loaded': !base64Image
+  }"
+>
+  <div *ngIf="base64Image" class="remove-button" (click)="removeImage()">
+    <mat-icon>close </mat-icon>
+  </div>
+  <label>
+    <input
+      #imageFile
+      type="file"
+      accept="image/*"
+      (change)="onFileSelect($event.target)"
+    />
+    <img #image [src]="base64Image" alt="" />
+  </label>
+</div>

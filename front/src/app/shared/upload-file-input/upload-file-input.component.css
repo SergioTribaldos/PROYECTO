@@ -1,0 +1,73 @@
+:host {
+  height: 150px;
+  width: 150px;
+}
+.container {
+  height: 150px;
+  width: 150px;
+  background: url(../../../assets/camera-icon.svg) no-repeat center center;
+  background-size: 97px;
+  opacity: 0.8;
+  border: 3px dashed black;
+  border-radius: 10px;
+  transition: all 0.2s;
+  opacity: 0.6;
+  padding: 0px;
+}
+
+label {
+  height: 150px;
+  width: 150px;
+  cursor: pointer;
+}
+.image-not-loaded:hover {
+  border: 3px dashed #feb300;
+  opacity: 0.8;
+}
+
+input {
+  display: none;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 5;
+}
+
+.image-loaded {
+  opacity: 1;
+  border: none;
+}
+
+.image-loaded:hover {
+  transform: scale(1.1);
+}
+.image-loaded:hover .remove-button {
+  display: block;
+}
+.remove-button:hover label {
+  pointer-events: none;
+}
+
+.remove-button {
+  weight: 30px;
+  width: 30px;
+  background-color: #e6e6e6;
+  border: 1px solid gray;
+  border-radius: 40px;
+  position: absolute;
+  top: -14px;
+  left: 133px;
+  cursor: pointer;
+  z-index: 10;
+  display: none;
+}
+
+::ng-deep .mat-icon {
+  height: 20px !important;
+  position: relative;
+  top: 2px;
+  left: 2px;
+}

@@ -1,0 +1,37 @@
+<mat-card
+  class="example-card mat-elevation-z10"
+  fxLayout="row"
+  (click)="goTo()"
+>
+  <div class="img-container">
+    <img
+      class="product-img"
+      [src]="APIENDPOINT_BACKEND + '/' + product.pictures[0].url"
+    />
+  </div>
+
+  <div class="info-container">
+    <div class="info-body">
+      <h2>{{ product.title }}</h2>
+      <h3>{{ product.price }} €</h3>
+      <div class="description">{{ resumedDescriptionText }}</div>
+    </div>
+
+    <div class="info-footer" fxLayoutAlign="space-around center">
+      <div fxFlex="50%">
+        <span>
+          <img class="location-icon" src="../../../assets/location-icon.svg" />
+          <span style="vertical-align: middle;"
+            >{{ product.distance_to_user }} km</span
+          >
+        </span>
+      </div>
+
+      <div fxFlex="50%" fxLayoutAlign="end center">
+        <div class="condition" [ngClass]="setConditionClass()">
+          {{ product.condition }}
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

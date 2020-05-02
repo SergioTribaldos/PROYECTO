@@ -1,0 +1,104 @@
+@import "../../../custom-theme.scss";
+@import "~nouislider/distribute/nouislider.min.css";
+:host {
+  display: block;
+}
+.navbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background-color: mat-color($front-primary);
+}
+
+.logo {
+  font-family: "Monoton", cursive;
+  height: 60px;
+  width: 60px;
+  background: white;
+  border: 1px solid white;
+  border-radius: 40px;
+  text-align: center;
+  font-size: 41px;
+  line-height: 65px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.search-container {
+  margin-left: 30px;
+  width: 35%;
+}
+.input-container {
+  position: relative;
+  width: 100%;
+}
+.search-input {
+  width: 80%;
+  height: 42px;
+  border-radius: 21px;
+  background-color: #eceff1;
+  border: 1px solid transparent;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 0.875rem;
+  color: #253238;
+  padding: 0 32px 0 44px;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  outline: none;
+}
+svg {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 10px;
+  width: 28px;
+  height: 28px;
+  z-index: 1;
+}
+
+.search-input::placeholder {
+  padding-left: 10px;
+  font-size: 140%;
+}
+
+.subvar-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #e4e1e1;
+}
+
+.search-tag {
+  height: 31px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background: white;
+  user-select: none;
+}
+.search-tag:hover {
+  filter: brightness(80%);
+}
+
+.material-icons {
+  font-size: 19px;
+  margin-left: 8px;
+  margin-right: 6px;
+}
+.tag-text {
+  font-size: 130%;
+  margin-right: 8px;
+}
+
+::ng-deep.mat-menu-content {
+  padding: 15px !important;
+}
+::ng-deep.mat-menu-panel {
+  max-width: none !important;
+}

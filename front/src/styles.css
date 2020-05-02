@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~leaflet/dist/leaflet.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+html,
+body {
+  height: 100%;
+  background-color: #e6e6e6;
+}
+body {
+  margin: 0;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white;
+}
+
+.condition {
+  font-size: 75%;
+  border: 1px solid black;
+  height: 27px;
+  width: 92px;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 26px;
+  border-radius: 20px;
+}
+
+.condition-mint {
+  color: green;
+  border-color: green;
+}
+
+.condition-semi-new {
+  color: goldenrod;
+  border-color: goldenrod;
+}
+
+.condition-used {
+  color: red;
+  border-color: red;
+}
+
+/* NOTIFICATIONS MESSAGE COLORS*/
+.ok-msg {
+  color: #1de9b6 !important;
+}
+.ko-msg {
+  color: #b00020 !important;
+}
+/*--------------------*/
+
+button:focus {
+  outline: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}

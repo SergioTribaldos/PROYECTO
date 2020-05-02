@@ -1,0 +1,132 @@
+<mat-card>
+  <h2>Datos del producto</h2>
+
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" fxLayout="column">
+      <mat-label>Titulo del producto</mat-label>
+      <input matInput formControlName="title" class="title-input" />
+      <mat-error>Introduce el titulo de tu producto</mat-error>
+    </mat-form-field>
+    {{ form.controls.description.errors?.maxlength | json }}
+
+    <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="40px">
+      <mat-form-field appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select
+          formControlName="category"
+          (valueChange)="setCategoryAndResetTags($event)"
+        >
+          <mat-option
+            *ngFor="let category of categoryList"
+            [value]="category[0]"
+            >{{ category[1] }}</mat-option
+          >
+        </mat-select>
+        <mat-error>Selecciona una categoria</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Estado del producto</mat-label>
+        <mat-select formControlName="condition">
+          <mat-option
+            *ngFor="let condition of conditionList"
+            [value]="condition[1]"
+            >{{ condition[1] }}</mat-option
+          >
+        </mat-select>
+        <mat-error>Selecciona el estado del producto</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field *ngIf="selectedCategory">
+      <h4>Elige las tags de búsqueda</h4>
+      <mat-chip-list
+        aria-label="Selecciona tags"
+        [selectable]="true"
+        [multiple]="true"
+      >
+        <mat-chip
+          *ngFor="let tag of productTagsList[selectedCategory]"
+          (click)="toggleTag(tag)"
+          [selectable]="true"
+          [selected]="selectedTags[tag]"
+        >
+          {{ tag }}</mat-chip
+        >
+      </mat-chip-list>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Descripcion</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        [mat-autosize]="false"
+        rows="7"
+      ></textarea>
+
+      <mat-error *ngIf="form.controls.description.errors?.required"
+        >Introduce una descripción para tu producto</mat-error
+      >
+      <mat-error *ngIf="form.controls.description.errors?.maxlength">
+        La longitud máxima es de 600 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="40px">
+      <mat-form-field appearance="outline" fxLayout="column" fxFlex="25%">
+        <mat-label>Precio</mat-label>
+        <input matInput formControlName="price" type="number" />
+        <mat-error>Introduce el precio de tu producto</mat-error>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="accept_changes" fxLayoutAlign="end"
+        >Acepto cambios</mat-checkbox
+      >
+      <mat-checkbox formControlName="accept_changes">
+        Precio negociable</mat-checkbox
+      >
+    </div>
+  </form>
+</mat-card>
+
+<mat-card>
+  <h2>Sube fotos</h2>
+  <mat-error *ngIf="filesNotLoaded"
+    >Selecciona el estado del producto</mat-error
+  >
+  <div
+    class="upload-files-container"
+    fxLayout="row wrap"
+    fxLayoutAlign="space-evenly"
+  >
+    <app-upload-file-input
+      fxFlex="25%"
+      *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8]; let i = index"
+      (addOrRemoveImageToForm)="addOrRemoveImageToForm($event)"
+      [inputId]="i"
+    ></app-upload-file-input>
+  </div>
+</mat-card>
+
+{{ form.getRawValue() | json }}
+
+<mat-card>
+  <h2>
+    Localización
+    <small>(La localizacion será la misma que elegiste en tu perfil)</small>
+  </h2>
+
+  <div class="map-container">
+    <app-map
+      [editMode]="false"
+      [currentCoords]="{
+        lat: (userDetails$ | async).lat,
+        lng: (userDetails$ | async).lng
+      }"
+    ></app-map>
+  </div>
+</mat-card>
+
+<button mat-raised-button color="primary" (click)="uploadProduct()">
+  Sube tu producto!
+</button>

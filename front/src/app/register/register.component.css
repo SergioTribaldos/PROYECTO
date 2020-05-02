@@ -1,0 +1,25 @@
+.container {
+  width: 600px;
+  margin: auto;
+  margin-top: 200px;
+}
+.form-container {
+  margin: auto;
+  width: 300px;
+}
+.form-field-row {
+  display: block;
+}
+.select-location-btn {
+  width: 100%;
+}
+mat-form-field {
+  width: 100%;
+}
+h1 {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 150px;
+  font-family: "Monoton", cursive;
+  color: #feb300;
+}
