@@ -50,7 +50,7 @@
         keyboard_arrow_down
       </span></mat-chip
     >
-    <mat-chip color="primary"
+    <mat-chip color="primary" [matMenuTriggerFor]="categoriesMenu"
       ><span class="material-icons">
         music_note
       </span>
@@ -97,6 +97,10 @@
         Cancelar
       </button>
     </div>
+  </mat-menu>
+
+  <mat-menu #categoriesMenu="matMenu" class="menu-container">
+    <app-chips-list [tagList]="tagsList"></app-chips-list>
   </mat-menu>
 </div>
 {{ form.getRawValue() | json }}

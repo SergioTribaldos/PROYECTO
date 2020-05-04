@@ -1,0 +1,14 @@
+<mat-chip-list
+  aria-label="Selecciona tags"
+  [selectable]="true"
+  [multiple]="true"
+>
+  <mat-chip
+    *ngFor="let tag of tagList"
+    (click)="toggleTag(tag)"
+    [selectable]="true"
+    [selected]="selectedTags[tag]"
+  >
+    {{ tag }}</mat-chip
+  >
+</mat-chip-list>

@@ -37,23 +37,16 @@
       </mat-form-field>
     </div>
 
-    <mat-form-field *ngIf="selectedCategory">
+    <div [hidden]="!selectedCategory">
       <h4>Elige las tags de búsqueda</h4>
-      <mat-chip-list
-        aria-label="Selecciona tags"
-        [selectable]="true"
-        [multiple]="true"
+      <app-chips-list
+        #chi
+        [tagList]="productTagsList[selectedCategory]"
+        (tagSelected)="setTags($event)"
       >
-        <mat-chip
-          *ngFor="let tag of productTagsList[selectedCategory]"
-          (click)="toggleTag(tag)"
-          [selectable]="true"
-          [selected]="selectedTags[tag]"
-        >
-          {{ tag }}</mat-chip
-        >
-      </mat-chip-list>
-    </mat-form-field>
+      </app-chips-list>
+    </div>
+
     <br />
     <mat-form-field appearance="outline">
       <mat-label>Descripcion</mat-label>

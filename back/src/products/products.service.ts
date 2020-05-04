@@ -2,8 +2,8 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './product.entity';
-import { Repository, createQueryBuilder, getRepository } from 'typeorm';
-import { User } from 'src/user/user.entity';
+import { Repository, getRepository } from 'typeorm';
+
 import { ProductResponseDto } from './product-response.dto';
 
 @Injectable()
@@ -27,13 +27,16 @@ export class ProductsService {
       .addSelect('ST_Y(coords)', 'lng')
       .getRawAndEntities();
 
-    return products.entities.map((entity, index) => {
-      console.log(products.raw[index]);
+    return products.entities.map(entity => {
+      const firsMatchingProduct = products.raw.find(
+        ({ product_id }) => product_id == entity.id,
+      );
+
       return {
         ...entity,
-        distance_to_user: products.raw[index].distance,
-        lat: products.raw[index].lat,
-        lng: products.raw[index].lng,
+        distance_to_user: firsMatchingProduct.distance,
+        lat: firsMatchingProduct.lat,
+        lng: firsMatchingProduct.lng,
       };
     });
   }

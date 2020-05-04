@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { getMergedRoute } from 'src/app/router/router-state.selectors';
 import { PRODUCT_ACTIONS } from '../product /store/product.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Category, ProductTags } from '../product /model/product';
 
 @Component({
   selector: 'app-navbar',
@@ -16,21 +17,27 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NavbarComponent implements OnInit {
   user$: Observable<User>;
-  isSubBarActivated$: any;
+  isSubBarActivated$: Observable<boolean>;
+  categoryList: Object = Object.entries(Category);
+  tagsList: any;
   form: FormGroup;
+
   constructor(private store: Store<AppState>, private fb: FormBuilder) {
     this.form = fb.group({
       minPrice: [null],
       maxPrice: [null],
     });
+
+    this.tagsList = this.mergeCategoriesAndTags();
+    console.log();
   }
 
   ngOnInit(): void {
     this.user$ = this.store.pipe(select(getUser));
     this.isSubBarActivated$ = this.store.pipe(
       select(getMergedRoute),
-      map((c) => {
-        return c.url.includes('all');
+      map((url) => {
+        return url.url.includes('all');
       })
     );
   }
@@ -45,5 +52,10 @@ export class NavbarComponent implements OnInit {
     for (const formControlName of formControlNames) {
       this.form.get(formControlName).setValue(null);
     }
+  }
+
+  mergeCategoriesAndTags() {
+    console.log(Object.values(ProductTags).map((arr) => arr.concat(arr)));
+    return [...Object.values(Category)];
   }
 }

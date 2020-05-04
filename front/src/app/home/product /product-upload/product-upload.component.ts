@@ -1,21 +1,21 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
 import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl,
-} from '@angular/forms';
+  Component,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  ElementRef,
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppState } from 'src/app/reducers';
 import { Store, select } from '@ngrx/store';
 import { getUser, getUserId } from 'src/app/auth/store/auth.selectors';
 import { User } from 'src/app/auth/model/user';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Category, Condition, ProductTags } from '../model/product';
-import { MatChipInputEvent } from '@angular/material/chips';
 import { FileEmitter } from '@shared/upload-file-input/upload-file-input.component';
-import { startWith, tap, map, concatMap, first, take } from 'rxjs/operators';
-import { ProductUploadDto } from '../model/product.dto';
+import { take } from 'rxjs/operators';
 import { ProductService } from '../../services/product.service';
+import { ChipsListComponent } from '@shared/chips-list/chips-list.component';
 
 @Component({
   selector: 'app-product-upload',
@@ -40,8 +40,10 @@ export class ProductUploadComponent implements OnInit {
   selectedTags: Object = {};
   selectedImages: Object = {};
 
+  @ViewChild(ChipsListComponent) chipsList: ChipsListComponent;
+
   constructor(
-    private fb: FormBuilder,
+    fb: FormBuilder,
     private store: Store<AppState>,
     private productService: ProductService
   ) {
@@ -65,18 +67,14 @@ export class ProductUploadComponent implements OnInit {
     });
   }
 
-  toggleTag(tag: string) {
-    this.selectedTags[tag] == tag
-      ? delete this.selectedTags[tag]
-      : (this.selectedTags[tag] = tag);
-
-    this.form.get('tags').setValue(Object.values(this.selectedTags));
+  setTags(val) {
+    this.form.patchValue({ tags: val });
   }
 
   setCategoryAndResetTags(value: string) {
     this.selectedCategory = value;
-    this.selectedTags = {};
-    this.form.get('tags').setValue('');
+    this.form.patchValue({ tags: '' });
+    this.chipsList.setCategoryAndResetTags(value);
   }
 
   addOrRemoveImageToForm({ file, action, inputId }: FileEmitter) {

@@ -7,14 +7,20 @@ import { NavbarComponent } from '../home/navbar/navbar.component';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedEffects } from './store/shared-effects';
 import { UploadFileInputComponent } from './upload-file-input/upload-file-input.component';
+import { ChipsListComponent } from './chips-list/chips-list.component';
 
 @NgModule({
-  declarations: [MapComponent, MapDialogComponent, UploadFileInputComponent],
+  declarations: [
+    MapComponent,
+    MapDialogComponent,
+    UploadFileInputComponent,
+    ChipsListComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,
     EffectsModule.forFeature([SharedEffects]),
   ],
-  exports: [MapComponent, UploadFileInputComponent],
+  exports: [MapComponent, UploadFileInputComponent, ChipsListComponent],
 })
 export class SharedModule {}
