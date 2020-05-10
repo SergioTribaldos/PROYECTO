@@ -1,0 +1,127 @@
+<div [formGroup]="form" fxLayoutAlign="start center">
+  <mat-chip-list [multiple]="true">
+    <mat-chip
+      [matMenuTriggerFor]="priceMenu"
+      (menuClosed)="search()"
+      color="primary"
+      [selected]="form.get('minPrice').value || form.get('maxPrice').value"
+      ><span class="material-icons">
+        euro_symbol
+      </span>
+      <span class="tag-text">Precio</span>
+      <span class="material-icons">
+        keyboard_arrow_down
+      </span></mat-chip
+    >
+    <mat-chip
+      color="primary"
+      [matMenuTriggerFor]="categoriesMenu"
+      (menuClosed)="search()"
+      [selected]="form.get('tags').value"
+      ><span class="material-icons">
+        music_note
+      </span>
+      <span class="tag-text">Categorias</span>
+      <span class="material-icons">
+        keyboard_arrow_down
+      </span></mat-chip
+    >
+    <mat-chip
+      color="primary"
+      [matMenuTriggerFor]="distanceMenu"
+      (menuClosed)="search()"
+      [selected]="form.get('maxDistance').value"
+      ><span class="material-icons">
+        location_on
+      </span>
+      <span class="tag-text">Distancia</span>
+      <span class="material-icons">
+        keyboard_arrow_down
+      </span></mat-chip
+    >
+  </mat-chip-list>
+
+  <!-- MENU FOR PRICE FILTERING-->
+  <mat-menu #priceMenu="matMenu" class="menu-container">
+    <div (click)="$event.stopPropagation()">
+      <h3>Cuanto quieres pagar?</h3>
+      <div fxLayoutAlign="center space-around" fxLayoutGap="20px">
+        <mat-form-field appearance="outline">
+          <mat-label>Minimo</mat-label>
+          <input matInput #minPrice type="number" formControlName="minPrice" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Maximo</mat-label>
+          <input matInput type="number" formControlName="maxPrice" />
+        </mat-form-field>
+      </div>
+      <div fxLayoutAlign="end" fxLayoutGap="10px">
+        <button mat-flat-button color="primary" (click)="search()">
+          Aceptar
+        </button>
+        <button
+          mat-flat-button
+          color="warn"
+          (click)="unsetFormControlValue(['minPrice', 'maxPrice'])"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </mat-menu>
+
+  <!-- MENU FOR CATEGORY FILTERING-->
+  <mat-menu #categoriesMenu="matMenu" class="menu-container">
+    <div (click)="$event.stopPropagation()">
+      <h3>Elige tags de búsqueda</h3>
+      <div class="chip-list-container">
+        <app-chips-list
+          [tagList]="tagsList"
+          (tagSelected)="setTags($event)"
+        ></app-chips-list>
+      </div>
+
+      <div fxLayoutAlign="end" fxLayoutGap="10px">
+        <button mat-flat-button color="primary" (click)="search()">
+          Aceptar
+        </button>
+        <button
+          mat-flat-button
+          color="warn"
+          (click)="unsetFormControlValue(['tags'])"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </mat-menu>
+
+  <!-- MENU FOR DISTANCE FILTERING-->
+  <mat-menu
+    #distanceMenu="matMenu"
+    class="menu-container"
+    overlapTrigger="false"
+  >
+    <div (click)="$event.stopPropagation()">
+      <h3>Elige la distancia máxima</h3>
+      <div>
+        <span>0km</span>
+        <mat-slider formControlName="maxDistance" color="primary"></mat-slider>
+        <span>100km</span>
+      </div>
+
+      <div fxLayoutAlign="end" fxLayoutGap="10px">
+        <button mat-flat-button color="primary" (click)="search()">
+          Aceptar
+        </button>
+        <button
+          mat-flat-button
+          color="warn"
+          (click)="unsetFormControlValue(['maxDistance'])"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </mat-menu>
+</div>

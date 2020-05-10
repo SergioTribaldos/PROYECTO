@@ -19,6 +19,7 @@ import { ProductDetailComponent } from './product /product-detail/product-detail
 import { ProductUploadComponent } from './product /product-upload/product-upload.component';
 import { HomeEffects } from './product /store/product.effects';
 import { productsReducer } from './product /store/product.reducers';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { productsReducer } from './product /store/product.reducers';
     ProductDetailComponent,
     NavbarComponent,
     ProductUploadComponent,
+    SearchBarComponent,
   ],
   imports: [
     CommonModule,

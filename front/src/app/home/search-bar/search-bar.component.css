@@ -1,0 +1,41 @@
+.search-tag {
+  height: 31px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background: white;
+  user-select: none;
+}
+.search-tag:hover {
+  filter: brightness(80%);
+}
+
+.material-icons {
+  font-size: 19px;
+  margin-left: 8px;
+  margin-right: 6px;
+}
+.tag-text {
+  font-size: 130%;
+  margin-right: 8px;
+}
+
+::ng-deep.mat-menu-content {
+  padding: 15px !important;
+}
+::ng-deep.mat-menu-panel {
+  max-width: none !important;
+}
+
+.chip-list-container {
+  width: 400px;
+  margin-bottom: 25px;
+}
+
+mat-slider {
+  width: 300px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+::ng-deep.mat-standard-chip {
+  margin-left: 50px !important;
+}
