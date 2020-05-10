@@ -21,16 +21,21 @@ export class ChipsListComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.tagList);
-  }
+  ngOnInit(): void {}
 
   toggleTag(tag: string) {
     this.selectedTags[tag] == tag
       ? delete this.selectedTags[tag]
       : (this.selectedTags[tag] = tag);
 
-    this.formControl.setValue(Object.values(this.selectedTags));
+    console.log(Object.values(this.selectedTags));
+
+    if (this.selectedTags == {}) {
+      this.selectedTags = null;
+    }
+
+    this.setNullIfNoTagSelected();
+
     this.tagSelected.emit(this.formControl.value);
   }
 
@@ -38,5 +43,13 @@ export class ChipsListComponent implements OnInit {
     this.selectedCategory = value;
     this.selectedTags = {};
     this.formControl.setValue('');
+  }
+
+  setNullIfNoTagSelected() {
+    this.formControl.setValue(
+      Object.values(this.selectedTags).length === 0
+        ? null
+        : Object.values(this.selectedTags)
+    );
   }
 }
