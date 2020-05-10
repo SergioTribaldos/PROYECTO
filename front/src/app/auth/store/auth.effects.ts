@@ -14,18 +14,19 @@ import { Store, select } from '@ngrx/store';
 
 @Injectable()
 export class AuthEffects {
-  loginSuccess$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthActions.loginSuccess),
-      tap((action) => {
-        this.router.navigate(['home/all']);
-        localStorage.setItem(
-          'userToken',
-          JSON.stringify(action.user.access_token)
-        );
-      }),
-      map(() => PRODUCT_ACTIONS.loadProducts())
-    )
+  loginSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.loginSuccess),
+        tap((action) => {
+          this.router.navigate(['home/all']);
+          localStorage.setItem(
+            'userToken',
+            JSON.stringify(action.user.access_token)
+          );
+        })
+      ),
+    { dispatch: false }
   );
 
   logout$ = createEffect(
