@@ -18,19 +18,8 @@ import { Category, ProductTags } from '../product /model/product';
 export class NavbarComponent implements OnInit {
   user$: Observable<User>;
   isSubBarActivated$: Observable<boolean>;
-  categoryList: Object = Object.entries(Category);
-  tagsList: any;
-  form: FormGroup;
 
-  constructor(private store: Store<AppState>, private fb: FormBuilder) {
-    this.form = fb.group({
-      minPrice: [null],
-      maxPrice: [null],
-    });
-
-    this.tagsList = this.mergeCategoriesAndTags();
-    console.log();
-  }
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.user$ = this.store.pipe(select(getUser));
@@ -46,16 +35,5 @@ export class NavbarComponent implements OnInit {
     this.store.dispatch(
       PRODUCT_ACTIONS.searchProducts({ searchParams: 'fdsfgsd' })
     );
-  }
-
-  unsetFormControlValue(formControlNames: string[]) {
-    for (const formControlName of formControlNames) {
-      this.form.get(formControlName).setValue(null);
-    }
-  }
-
-  mergeCategoriesAndTags() {
-    console.log(Object.values(ProductTags).map((arr) => arr.concat(arr)));
-    return [...Object.values(Category)];
   }
 }
