@@ -2,8 +2,11 @@
 @import "~leaflet/dist/leaflet.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
 
+* {
+  font-weight: 500;
+}
 html,
 body {
   height: 100%;
