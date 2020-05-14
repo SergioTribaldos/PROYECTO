@@ -9,6 +9,7 @@ import { getMergedRoute } from 'src/app/router/router-state.selectors';
 import { PRODUCT_ACTIONS } from '../product /store/product.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category, ProductTags } from '../product /model/product';
+import { AuthActions } from 'src/app/auth/store/action-types';
 
 @Component({
   selector: 'app-navbar',
@@ -31,9 +32,7 @@ export class NavbarComponent implements OnInit {
     );
   }
 
-  search() {
-    this.store.dispatch(
-      PRODUCT_ACTIONS.searchProducts({ searchParams: 'fdsfgsd' })
-    );
+  logout() {
+    this.store.dispatch(AuthActions.logout());
   }
 }

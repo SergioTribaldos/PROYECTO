@@ -24,13 +24,27 @@
       <input class="search-input" placeholder="Buscar" />
     </div>
   </div>
-  <div class="user-info-container"></div>
-  <div class="upload-product-container">
-    <button mat-raised-button color="white" routerLink="upload">
-      Subir producto
-    </button>
+
+  <div>
+    <mat-chip-list>
+      <mat-chip class="upload-product" routerLink="upload"
+        ><span class="material-icons"> control_point </span>Subir
+        producto</mat-chip
+      >
+      <mat-chip [matMenuTriggerFor]="appMenu"
+        ><span class="material-icons"> face </span>Usuario</mat-chip
+      >
+    </mat-chip-list>
   </div>
 </div>
 <div class="subvar-container" *ngIf="isSubBarActivated$ | async">
   <app-search-bar></app-search-bar>
 </div>
+
+<mat-menu #appMenu="matMenu">
+  <div (click)="$event.stopPropagation()">
+    <button mat-menu-item>Productos</button>
+    <mat-divider></mat-divider>
+    <div mat-menu-item (click)="logout()">Logout</div>
+  </div>
+</mat-menu>

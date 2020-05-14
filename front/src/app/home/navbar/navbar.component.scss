@@ -50,6 +50,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   outline: none;
+  font-weight: 400;
 }
 svg {
   position: absolute;
@@ -73,4 +74,19 @@ svg {
   padding-bottom: 10px;
   background-color: white;
   box-shadow: 0px 10px 3px -5px rgba(219, 219, 219, 1);
+}
+
+.mat-standard-chip {
+  margin-left: 50px !important;
+  font-size: 18px;
+  background-color: white !important;
+  font-weight: 300;
+}
+.material-icons {
+  font-size: 24px;
+  margin-right: 6px;
+  color: mat-color($front-primary) !important ;
+}
+.mat-menu-item {
+  font-weight: 400;
 }
