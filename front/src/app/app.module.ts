@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { LoginComponent } from './auth/login/login.component';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
@@ -20,7 +19,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { HomeModule } from './home/home.module';
 import { AuthGuard } from './auth/login/login.guard';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
-import { CustomSerializer } from './utils/utils';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },

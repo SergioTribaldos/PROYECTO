@@ -12,7 +12,8 @@ export const loginSuccess = createAction(
   props<{ user: User }>()
 );
 
-export const logout = createAction('[Top Menu] Logout');
+export const logout = createAction('[Navbar] Logout');
+export const userLoggedOut = createAction('[Navbar] User logged out');
 
 export const checkToken = createAction(
   '[Login Page] App start token check',

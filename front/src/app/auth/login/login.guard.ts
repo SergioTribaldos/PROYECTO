@@ -26,26 +26,18 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    const userProfile = localStorage.getItem('userToken');
-    return this.authService.checkToken(JSON.parse(userProfile)).pipe(
+    const userToken = localStorage.getItem('userToken');
+    if (!userToken) {
+      throw new Error('No user token provided');
+    }
+    return this.authService.checkToken(JSON.parse(userToken)).pipe(
       map(() => {
         return true;
       }),
       catchError(() => {
-        this.router.navigateByUrl('/login');
+        this.router.navigate(['/login']);
         return of(false);
       })
     );
-
-    // return of(true);
-    /* return this.store.pipe(
-      select(isLoggedIn),
-      tap((loggedIn) => {
-        debugger;
-        if (!loggedIn) {
-          this.router.navigateByUrl('/login');
-        }
-      })
-    );*/
   }
 }

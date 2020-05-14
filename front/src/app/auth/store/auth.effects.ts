@@ -29,16 +29,15 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  logout$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(AuthActions.logout),
-        tap((action) => {
-          localStorage.removeItem('user');
-          this.router.navigateByUrl('/login');
-        })
-      ),
-    { dispatch: false }
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.logout),
+      map(() => {
+        localStorage.removeItem('userToken');
+        this.router.navigate(['/login']);
+        return AuthActions.userLoggedOut();
+      })
+    )
   );
 
   checkToken$ = createEffect(() =>

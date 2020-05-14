@@ -1,14 +1,4 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer,
-  createReducer,
-  on,
-} from '@ngrx/store';
-import { UserMeDto } from '../model/user-me.dto';
-
+import { createReducer, on } from '@ngrx/store';
 import { AuthActions } from './action-types';
 import { User } from '../model/user';
 
@@ -30,7 +20,7 @@ export const authReducer = createReducer(
     };
   }),
 
-  on(AuthActions.logout, (state, action) => {
+  on(AuthActions.userLoggedOut, (state, action) => {
     return {
       user: undefined,
     };
