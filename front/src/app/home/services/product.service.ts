@@ -21,17 +21,27 @@ export class ProductService {
     );
   }
 
-  searchProducts(params): Observable<Product[]> {
-    return this.http.get<Product[]>(
+  searchProducts(user, params): Observable<Product[]> {
+    return this.http.post<Product[]>(
       `${environment.APIENDPOINT_BACKEND}/products/search`,
-      { params: { params: params } }
+      { user, params }
     );
   }
 
   uploadProduct(formData: FormData) {
-    return this.http.post(
+    return this.http.post<any>(
       `${environment.APIENDPOINT_BACKEND}/products/upload`,
       formData
+    );
+  }
+
+  addViewedProduct(productId) {
+    console.log(productId);
+    return this.http.get<any>(
+      `${environment.APIENDPOINT_BACKEND}/products/viewed`,
+      {
+        params: { productId },
+      }
     );
   }
 }
