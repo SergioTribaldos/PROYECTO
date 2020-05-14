@@ -5,7 +5,6 @@ import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { MaterialModule } from './material/material.module';
 import { NavbarComponent } from '../home/navbar/navbar.component';
 import { EffectsModule } from '@ngrx/effects';
-import { SharedEffects } from './store/shared-effects';
 import { UploadFileInputComponent } from './upload-file-input/upload-file-input.component';
 import { ChipsListComponent } from './chips-list/chips-list.component';
 
@@ -16,11 +15,7 @@ import { ChipsListComponent } from './chips-list/chips-list.component';
     UploadFileInputComponent,
     ChipsListComponent,
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    EffectsModule.forFeature([SharedEffects]),
-  ],
+  imports: [CommonModule, MaterialModule],
   exports: [MapComponent, UploadFileInputComponent, ChipsListComponent],
 })
 export class SharedModule {}
