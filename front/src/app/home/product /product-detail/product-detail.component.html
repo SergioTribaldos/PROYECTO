@@ -1,6 +1,8 @@
 <div class="card-container">
   <mat-card *ngIf="product$ | async as product">
     <mat-card-content>
+      <app-user-info-header [user]="product.user"> </app-user-info-header>
+
       <div class="carousel-container">
         <ngb-carousel #carousel [interval]="0" *ngIf="product.pictures">
           <ng-template ngbSlide *ngFor="let image of product.pictures">
@@ -13,6 +15,7 @@
           </ng-template>
         </ngb-carousel>
       </div>
+
       <mat-card-header>
         <mat-card-title class="title">{{ product.title }}</mat-card-title>
         <mat-card-subtitle class="price"
@@ -24,15 +27,31 @@
           >{{ product.condition }}</mat-card-subtitle
         >
       </mat-card-header>
+
       <hr />
       <p class="description">
         {{ product.description }}
       </p>
       <hr />
+      <div fxLayoutAlign="space-around center" class="misc-info-container">
+        <div fxLayoutAlign="start" fxFlex="50%">
+          {{ product.uploaded_at | date: "dd-LLL-yy" }}
+        </div>
+        <div fxLayoutAlign="end" fxFlex="50%">
+          <div class="product-viewed-container">
+            <span class="material-icons"> remove_red_eye </span><span>0</span>
+          </div>
+        </div>
+      </div>
+      <hr />
     </mat-card-content>
+    <h2>
+      Localización
+      <small>(Doble click para expandir el mapa)</small>
+    </h2>
     <div
       class="map-container"
-      (dblclick)="too()"
+      (dblclick)="expandMap()"
       [ngStyle]="toggleExpandMap ? { height: '400px' } : { height: '200px' }"
     >
       <app-map

@@ -14,6 +14,8 @@ import {
 } from '@angular/material/dialog';
 import { selectOneProduct } from '../store/product.selector';
 import { environment } from 'src/environments/environment';
+import { concatMap, map, tap } from 'rxjs/operators';
+import { PRODUCT_ACTIONS } from '../store/product.actions';
 
 @Component({
   selector: 'dialog-overview-example-dialog',
@@ -45,7 +47,13 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.APIENDPOINT_BACKEND = environment.APIENDPOINT_BACKEND;
     const queryParams = this.route.snapshot.params.id;
-    this.product$ = this.store.pipe(select(selectOneProduct(queryParams)));
+    this.product$ = this.store.pipe(
+      select(selectOneProduct(queryParams)),
+      tap(({ id }) => {
+        this.store.dispatch(PRODUCT_ACTIONS.productViewed({ productId: id }));
+      })
+    );
+    this.addViewToProduct();
   }
 
   setConditionClass(condition) {
@@ -58,7 +66,9 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  too() {
+  expandMap() {
     this.toggleExpandMap = !this.toggleExpandMap;
   }
+
+  addViewToProduct() {}
 }

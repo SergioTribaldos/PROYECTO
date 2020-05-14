@@ -27,6 +27,11 @@ img {
   margin: auto;
 }
 
+small {
+  opacity: 0.7;
+  font-size: 70%;
+}
+
 .condition {
   position: absolute;
   top: 475px;
@@ -70,4 +75,17 @@ img {
 
 .map-container {
   height: 200px;
+}
+.misc-info-container {
+  color: gray;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.material-icons {
+  font-size: 24px;
+  margin-right: 6px;
+  position: relative;
+  top: 5px;
+  left: 4px;
 }
