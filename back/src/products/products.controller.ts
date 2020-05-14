@@ -37,7 +37,7 @@ export class ProductsController {
   @Get('viewed')
   addViewedProduct(@Query() { productId }) {
     console.log(productId);
-    //return this.productService.getAllProducts(productId);
+    return this.productService.addViewedProduct(productId);
   }
 
   @Post('search')

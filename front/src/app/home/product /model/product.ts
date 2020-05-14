@@ -9,6 +9,7 @@ export interface Product {
   price: number;
   date_published: string;
   condition: Condition;
+  viewed_times: number;
   lat?: number;
   lng?: number;
   distance_to_user?: number;

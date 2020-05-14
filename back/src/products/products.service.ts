@@ -77,4 +77,11 @@ export class ProductsService {
   saveProduct(product: Product) {
     return this.productRepository.insert(product);
   }
+
+  addViewedProduct(productId: number) {
+    return this.productRepository.update(
+      { id: productId },
+      { viewed_times: () => 'viewed_times + 1' },
+    );
+  }
 }
