@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Product } from '../model/product';
+import { EntityMap } from '@ngrx/entity';
 
 export const PRODUCT_ACTIONS = {
   loadProducts: createAction('[Home Page] Load products'),
@@ -22,5 +23,10 @@ export const PRODUCT_ACTIONS = {
   searchProducts: createAction(
     '[Home Page] Search product',
     props<{ searchParams: string }>()
+  ),
+
+  productViewed: createAction(
+    '[Product detail] Product viewed',
+    props<{ productId: number }>()
   ),
 };
