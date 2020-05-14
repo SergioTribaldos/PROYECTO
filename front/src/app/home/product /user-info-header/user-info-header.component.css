@@ -1,0 +1,19 @@
+.container {
+  height: 60px;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+.user-name {
+  font-size: 200%;
+  font-weight: bold;
+}
+mat-chip {
+  height: 43px;
+  font-size: 140%;
+  background-color: #98b123 !important;
+  color: aliceblue !important;
+}
+mat-chip span {
+  margin: 10px;
+  font-weight: 400;
+}

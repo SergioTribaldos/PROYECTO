@@ -20,6 +20,7 @@ import { ProductUploadComponent } from './product /product-upload/product-upload
 import { HomeEffects } from './product /store/product.effects';
 import { productsReducer } from './product /store/product.reducers';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { UserInfoHeaderComponent } from './product /user-info-header/user-info-header.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     NavbarComponent,
     ProductUploadComponent,
     SearchBarComponent,
+    UserInfoHeaderComponent,
   ],
   imports: [
     CommonModule,
