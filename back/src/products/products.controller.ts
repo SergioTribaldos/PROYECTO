@@ -16,6 +16,11 @@ import { Product } from './product.entity';
 import { ProductsService } from './products.service';
 import { PictureService } from 'src/pictures/pictures.service';
 import { ProductResponseDto } from './product-response.dto';
+import {
+  SUCCESFUL_MESSAGES,
+  RESPONSE_STATUS,
+  ERROR_MESSAGES,
+} from 'src/shared/constants';
 
 @Controller('products')
 export class ProductsController {
@@ -25,38 +30,57 @@ export class ProductsController {
   ) {}
 
   @Get('all')
-  getAllProducts(@Query() params): Promise<ProductResponseDto[]> {
-    return this.productService.getAllProducts(params);
+  getAllProducts(@Query() user): Promise<ProductResponseDto[]> {
+    return this.productService.getAllProducts(user);
   }
 
-  @Get('search')
-  searchProducts(@Query() params) {
-    console.log(params);
-    //return this.productService.getAllProducts(params);
+  @Get('viewed')
+  addViewedProduct(@Query() { productId }) {
+    console.log(productId);
+    //return this.productService.getAllProducts(productId);
+  }
+
+  @Post('search')
+  async searchProducts(@Body() searchParams) {
+    return this.productService.getProductsFiltered(
+      searchParams.user,
+      searchParams.params,
+    );
   }
 
   @Post('upload')
   @UseInterceptors(FilesInterceptor('files', 8, multerConfig))
   async uploadFile(@UploadedFiles() files, @Body() userData: any) {
-    const product = this.parseData(userData);
+    try {
+      const product = this.parseData(userData);
+      const productId = (await this.productService.saveProduct(product))
+        .identifiers[0].id;
 
-    const productId = (await this.productService.saveProduct(product))
-      .identifiers[0].id;
+      this.renameFolder({
+        tempFolder: userData.userId,
+        newFolder: productId,
+      });
 
-    this.renameFolder({
-      tempFolder: userData.userId,
-      newFolder: productId,
-    });
+      const picturesURLs = this.populatePicturesURLs({
+        files: files,
+        productId: productId,
+      });
 
-    const picturesURLs = this.populatePicturesURLs({
-      files: files,
-      productId: productId,
-    });
+      this.pictureService.saveImages({
+        picturesURLs: picturesURLs,
+        productId: productId,
+      });
 
-    this.pictureService.saveImages({
-      picturesURLs: picturesURLs,
-      productId: productId,
-    });
+      return {
+        msg: SUCCESFUL_MESSAGES.PRODUCT_UPLOAD,
+        status: RESPONSE_STATUS.OK,
+      };
+    } catch (error) {
+      return {
+        msg: ERROR_MESSAGES.PRODUCT_UPLOAD_FAIL,
+        status: RESPONSE_STATUS.KO,
+      };
+    }
   }
 
   parseData(userData): Product {

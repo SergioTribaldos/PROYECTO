@@ -34,6 +34,15 @@ export class Product {
   @Column()
   price_negotiable: boolean;
 
+  @Column({ default: 0 })
+  viewed_times: number;
+
+  @Column('timestamp', {
+    nullable: false,
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  uploaded_at: Date;
+
   @ManyToOne(
     type => User,
     user => user.id,

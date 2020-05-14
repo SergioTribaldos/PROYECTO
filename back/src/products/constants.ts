@@ -18,3 +18,29 @@ export const multerConfig = {
     },
   }),
 };
+
+export const QUERY_ADD_WHERE = {
+  minPrice: ({ partialQuery, searchParams }) =>
+    partialQuery.andWhere('product.price > :minPrice', {
+      minPrice: searchParams.minPrice,
+    }),
+
+  maxPrice: ({ partialQuery, searchParams }) =>
+    partialQuery.andWhere('product.price < :maxPrice', {
+      maxPrice: searchParams.maxPrice,
+    }),
+  maxDistance: ({ partialQuery, searchParams, user }) =>
+    partialQuery.andWhere(
+      `ROUND(ST_Distance_Sphere(point(${user.lat}, ${user.lng}),coords)/1000)>:maxDistance`,
+      {
+        maxDistance: searchParams.maxDistance,
+      },
+    ),
+
+  tags: ({ partialQuery, searchParams }) =>
+    searchParams.tags.map((tag, index) => {
+      return partialQuery.andWhere(`product.categories like :tag${index}`, {
+        [`tag${index}`]: `%${tag}%`,
+      });
+    }),
+};
