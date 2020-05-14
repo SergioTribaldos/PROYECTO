@@ -65,18 +65,17 @@ export class SearchBarComponent implements OnInit {
   }
 
   search() {
-    Object.keys(this.form.value).forEach(
-      (key) => this.form.value[key] === null && delete this.form.value[key]
-    );
+    this.deleteFormNullValues();
 
-    console.log(this.form.value);
     this.closeMenu();
     this.store.dispatch(
       PRODUCT_ACTIONS.searchProducts({ searchParams: this.form.value })
     );
   }
 
-  aa() {
-    alert(8);
+  deleteFormNullValues() {
+    Object.keys(this.form.value).forEach(
+      (key) => this.form.value[key] === null && delete this.form.value[key]
+    );
   }
 }
