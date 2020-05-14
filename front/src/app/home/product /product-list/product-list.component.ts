@@ -2,8 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
-import { selectAllProducts, selectProducts } from '../store/product.selector';
+import {
+  selectAllProducts,
+  selectProducts,
+  isLoading,
+} from '../store/product.selector';
 import { AppState } from 'src/app/reducers';
+import { PRODUCT_ACTIONS } from '../store/product.actions';
+import { tap, map } from 'rxjs/operators';
+import { Product } from '../model/product';
 
 @Component({
   selector: 'app-product-list',
@@ -11,11 +18,14 @@ import { AppState } from 'src/app/reducers';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  products$: Observable<any>;
+  products$: Observable<Product[]>;
+  loading$: Observable<boolean>;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.products$ = this.store.pipe(select(selectProducts));
+    this.store.dispatch(PRODUCT_ACTIONS.loadProducts());
+    this.products$ = this.store.pipe(select(selectAllProducts));
+    this.loading$ = this.store.pipe(select(isLoading));
   }
 }

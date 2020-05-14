@@ -4,4 +4,7 @@
     [product]="product"
   >
   </app-product-card-small>
+  <div *ngIf="loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>

@@ -6,3 +6,7 @@
 app-product-card-small {
   margin-top: 10px;
 }
+
+mat-spinner {
+  margin: 200px auto;
+}
