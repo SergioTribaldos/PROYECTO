@@ -1,3 +1,5 @@
+import { User } from 'src/app/auth/model/user';
+
 export interface Product {
   id: number;
   title: string;
@@ -10,6 +12,8 @@ export interface Product {
   lat?: number;
   lng?: number;
   distance_to_user?: number;
+  uploaded_at?: string;
+  user?: User;
 }
 
 export interface Picture {

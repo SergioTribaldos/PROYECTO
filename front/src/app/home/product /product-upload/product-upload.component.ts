@@ -16,6 +16,7 @@ import { FileEmitter } from '@shared/upload-file-input/upload-file-input.compone
 import { take } from 'rxjs/operators';
 import { ProductService } from '../../services/product.service';
 import { ChipsListComponent } from '@shared/chips-list/chips-list.component';
+import { NotificationsService } from '@shared/notifications.service';
 
 @Component({
   selector: 'app-product-upload',
@@ -45,7 +46,8 @@ export class ProductUploadComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private store: Store<AppState>,
-    private productService: ProductService
+    private productService: ProductService,
+    private notificationsService: NotificationsService
   ) {
     this.form = fb.group({
       title: ['', Validators.required],
@@ -95,9 +97,11 @@ export class ProductUploadComponent implements OnInit {
     this.mergeCategoryAndTags();
     this.setFormDataValues();
 
-    this.productService.uploadProduct(this.formData).subscribe((x) => {
-      console.log(x);
-    });
+    this.productService
+      .uploadProduct(this.formData)
+      .subscribe(({ msg, status }) => {
+        this.notificationsService.showNotification(msg, status);
+      });
   }
 
   checkFormValidity() {
