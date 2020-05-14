@@ -19,8 +19,7 @@ import { Store } from '@ngrx/store';
 import { RegisterService } from './register.service';
 import { UserRegisterDto } from './user-register.dto';
 import { map } from 'rxjs/operators';
-import { AppState } from '../reducers';
-import { SHARED_ACTIONS } from '@shared/store/shared-actions';
+import { NotificationsService } from '@shared/notifications.service';
 
 @Component({
   selector: 'app-register',
@@ -37,7 +36,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private dialog: MatDialog,
     private registerService: RegisterService,
-    private store: Store<AppState>
+    private notificationsService: NotificationsService
   ) {
     this.form = fb.group(
       {
@@ -96,13 +95,10 @@ export class RegisterComponent implements OnInit {
       lng: this.form.value.coordinates.lng,
     };
 
-    this.registerService.register(userRegisterData).subscribe((response) => {
-      this.store.dispatch(
-        SHARED_ACTIONS.showNotification({
-          msg: response.msg,
-          msgType: response.status,
-        })
-      );
-    });
+    this.registerService
+      .register(userRegisterData)
+      .subscribe(({ msg, msgType }) => {
+        this.notificationsService.showNotification(msg, msgType);
+      });
   }
 }
