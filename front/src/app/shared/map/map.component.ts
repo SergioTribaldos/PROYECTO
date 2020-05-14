@@ -51,6 +51,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       zoom: 15,
       maxZoom: 18,
       minZoom: 12,
+      doubleClickZoom: false,
     });
 
     const tiles = L.tileLayer(
