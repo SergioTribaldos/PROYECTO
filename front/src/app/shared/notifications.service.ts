@@ -7,10 +7,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class NotificationsService {
   constructor(private snackBar: MatSnackBar) {}
 
-  showNotification(message, msgType) {
+  showNotification(message, status) {
     this.snackBar.open(message, '', {
       duration: 2000,
-      panelClass: [`${msgType}-msg`],
+      panelClass: [`${status}-msg`],
     });
   }
 }
