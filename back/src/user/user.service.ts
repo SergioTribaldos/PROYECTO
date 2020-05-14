@@ -9,7 +9,7 @@ import {
   ERROR_MESSAGES,
   SUCCESFUL_MESSAGES,
   RESPONSE_STATUS,
-} from './constants';
+} from '../shared/constants';
 
 @Injectable()
 export class UserService {
