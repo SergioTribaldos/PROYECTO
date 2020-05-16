@@ -36,11 +36,19 @@ export const QUERY_ADD_WHERE = {
         maxDistance: searchParams.maxDistance,
       },
     ),
-
   tags: ({ partialQuery, searchParams }) =>
     searchParams.tags.map((tag, index) => {
       return partialQuery.andWhere(`product.categories like :tag${index}`, {
         [`tag${index}`]: `%${tag}%`,
       });
     }),
+
+  name: ({ partialQuery, searchParams }) => {
+    partialQuery.andWhere('product.title like :name', {
+      name: `%${searchParams.name}%`,
+    });
+    partialQuery.orWhere('product.description like :name', {
+      name: `%${searchParams.name}%`,
+    });
+  },
 };
