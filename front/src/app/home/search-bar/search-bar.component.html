@@ -17,7 +17,7 @@
       color="primary"
       [matMenuTriggerFor]="categoriesMenu"
       (menuClosed)="search()"
-      [selected]="form.get('tags').value"
+      [selected]="form.get('searchTags').value"
       ><span class="material-icons">
         music_note
       </span>
@@ -35,6 +35,20 @@
         location_on
       </span>
       <span class="tag-text">Distancia</span>
+      <span class="material-icons">
+        keyboard_arrow_down
+      </span></mat-chip
+    >
+
+    <mat-chip
+      color="primary"
+      [matMenuTriggerFor]="conditionMenu"
+      (menuClosed)="search()"
+      [selected]="form.get('conditionTags').value"
+      ><span class="material-icons">
+        build
+      </span>
+      <span class="tag-text">Condicion</span>
       <span class="material-icons">
         keyboard_arrow_down
       </span></mat-chip
@@ -77,7 +91,8 @@
       <div class="chip-list-container">
         <app-chips-list
           [tagList]="tagsList"
-          (tagSelected)="setTags($event)"
+          [multipleSelectionAllowed]="true"
+          (tagSelected)="setSearchTags($event)"
         ></app-chips-list>
       </div>
 
@@ -88,7 +103,7 @@
         <button
           mat-flat-button
           color="warn"
-          (click)="unsetFormControlValue(['tags'])"
+          (click)="unsetFormControlValue(['searchTags'])"
         >
           Cancelar
         </button>
@@ -122,6 +137,33 @@
           mat-flat-button
           color="warn"
           (click)="unsetFormControlValue(['maxDistance'])"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </mat-menu>
+
+  <!-- MENU FOR CONDITION FILTERING-->
+  <mat-menu #conditionMenu="matMenu" class="menu-container">
+    <div (click)="$event.stopPropagation()">
+      <h3>Elige estado del producto</h3>
+      <div class="chip-list-container">
+        <app-chips-list
+          [tagList]="conditionTagsList"
+          [multipleSelectionAllowed]="false"
+          (tagSelected)="setConditionTags($event)"
+        ></app-chips-list>
+      </div>
+
+      <div fxLayoutAlign="end" fxLayoutGap="10px">
+        <button mat-flat-button color="primary" (click)="search()">
+          Aceptar
+        </button>
+        <button
+          mat-flat-button
+          color="warn"
+          (click)="unsetFormControlValue(['conditionTags'])"
         >
           Cancelar
         </button>

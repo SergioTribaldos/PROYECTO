@@ -5,7 +5,7 @@ import {
   ViewChildren,
   QueryList,
 } from '@angular/core';
-import { Category, ProductTags } from '../product /model/product';
+import { Category, ProductTags, Condition } from '../product /model/product';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { BUTTONS_LIST } from './constants';
@@ -20,7 +20,9 @@ import { PRODUCT_ACTIONS } from '../product /store/product.actions';
 })
 export class SearchBarComponent implements OnInit {
   categoryList: Object = Object.entries(Category);
+  conditionList: Object = Object.values(Condition);
   tagsList: any;
+  conditionTagsList: any;
   form: FormGroup;
   buttonsList = BUTTONS_LIST;
 
@@ -30,11 +32,13 @@ export class SearchBarComponent implements OnInit {
     this.form = fb.group({
       minPrice: [null],
       maxPrice: [null],
-      tags: [null],
+      searchTags: [null],
       maxDistance: [null],
+      conditionTags: [null],
     });
 
     this.tagsList = this.mergeCategoriesAndTags();
+    this.conditionTagsList = this.conditionList;
   }
 
   ngOnInit(): void {}
@@ -56,8 +60,12 @@ export class SearchBarComponent implements OnInit {
     return [...mergedCategories, ...mergedTags];
   }
 
-  setTags(val) {
-    this.form.patchValue({ tags: val });
+  setSearchTags(val) {
+    this.form.patchValue({ searchTags: val });
+  }
+
+  setConditionTags(val) {
+    this.form.patchValue({ conditionTags: val });
   }
 
   closeMenu() {
