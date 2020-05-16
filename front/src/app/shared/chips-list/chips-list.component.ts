@@ -11,6 +11,9 @@ export class ChipsListComponent implements OnInit {
   @Input()
   tagList: any;
 
+  @Input()
+  multipleSelectionAllowed: boolean;
+
   @Output()
   tagSelected = new EventEmitter<Array<string>>();
 
@@ -24,15 +27,9 @@ export class ChipsListComponent implements OnInit {
   ngOnInit(): void {}
 
   toggleTag(tag: string) {
-    this.selectedTags[tag] == tag
-      ? delete this.selectedTags[tag]
-      : (this.selectedTags[tag] = tag);
-
-    console.log(Object.values(this.selectedTags));
-
-    if (this.selectedTags == {}) {
-      this.selectedTags = null;
-    }
+    this.multipleSelectionAllowed
+      ? this.selectTagOnMultipleMode(tag)
+      : this.selectTagOnSingleMode(tag);
 
     this.setNullIfNoTagSelected();
 
@@ -51,5 +48,16 @@ export class ChipsListComponent implements OnInit {
         ? null
         : Object.values(this.selectedTags)
     );
+  }
+
+  selectTagOnMultipleMode(tag: string) {
+    this.selectedTags[tag] == tag
+      ? delete this.selectedTags[tag]
+      : (this.selectedTags[tag] = tag);
+  }
+
+  selectTagOnSingleMode(tag: string) {
+    this.selectedTags = {};
+    this.selectedTags[tag] = tag;
   }
 }

@@ -42,6 +42,7 @@
       <app-chips-list
         #chi
         [tagList]="productTagsList[selectedCategory]"
+        [multipleSelectionAllowed]="true"
         (tagSelected)="setTags($event)"
       >
       </app-chips-list>

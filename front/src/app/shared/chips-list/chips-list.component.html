@@ -1,7 +1,7 @@
 <mat-chip-list
   aria-label="Selecciona tags"
   [selectable]="true"
-  [multiple]="true"
+  [multiple]="multipleSelectionAllowed"
 >
   <mat-chip
     *ngFor="let tag of tagList"
