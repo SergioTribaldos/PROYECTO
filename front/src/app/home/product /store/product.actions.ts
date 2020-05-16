@@ -22,7 +22,7 @@ export const PRODUCT_ACTIONS = {
 
   searchProducts: createAction(
     '[Home Page] Search product',
-    props<{ searchParams: string }>()
+    props<{ searchParams: any }>()
   ),
 
   productViewed: createAction(

@@ -35,4 +35,11 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.store.dispatch(AuthActions.logout());
   }
+  searchByName({ target: { value } }) {
+    if (!!value) {
+      this.store.dispatch(
+        PRODUCT_ACTIONS.searchProducts({ searchParams: { name: value } })
+      );
+    }
+  }
 }

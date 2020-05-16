@@ -22,6 +22,7 @@ export class ProductService {
   }
 
   searchProducts(user, params): Observable<Product[]> {
+    console.log(params);
     return this.http.post<Product[]>(
       `${environment.APIENDPOINT_BACKEND}/products/search`,
       { user, params }
