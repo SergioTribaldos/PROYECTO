@@ -24,7 +24,6 @@ export class ProductListComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(PRODUCT_ACTIONS.loadProducts());
     this.products$ = this.store.pipe(select(selectAllProducts));
     this.loading$ = this.store.pipe(select(isLoading));
   }
