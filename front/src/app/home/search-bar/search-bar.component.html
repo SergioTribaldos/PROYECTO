@@ -2,7 +2,6 @@
   <mat-chip-list [multiple]="true">
     <mat-chip
       [matMenuTriggerFor]="priceMenu"
-      (menuClosed)="search()"
       color="primary"
       [selected]="form.get('minPrice').value || form.get('maxPrice').value"
       ><span class="material-icons">
@@ -16,7 +15,6 @@
     <mat-chip
       color="primary"
       [matMenuTriggerFor]="categoriesMenu"
-      (menuClosed)="search()"
       [selected]="form.get('searchTags').value"
       ><span class="material-icons">
         music_note
@@ -29,7 +27,6 @@
     <mat-chip
       color="primary"
       [matMenuTriggerFor]="distanceMenu"
-      (menuClosed)="search()"
       [selected]="form.get('maxDistance').value"
       ><span class="material-icons">
         location_on
@@ -43,7 +40,6 @@
     <mat-chip
       color="primary"
       [matMenuTriggerFor]="conditionMenu"
-      (menuClosed)="search()"
       [selected]="form.get('conditionTags').value"
       ><span class="material-icons">
         build
