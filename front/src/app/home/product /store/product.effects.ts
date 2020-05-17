@@ -9,7 +9,7 @@ import { ProductService } from '../../services/product.service';
 import { getUser } from 'src/app/auth/store/auth.selectors';
 
 @Injectable()
-export class HomeEffects {
+export class ProductEffects {
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(PRODUCT_ACTIONS.loadProducts),

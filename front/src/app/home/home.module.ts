@@ -17,10 +17,12 @@ import { ProductListComponent } from './product /product-list/product-list.compo
 import { ProductCardSmallComponent } from './product /product-card-small/product-card-small.component';
 import { ProductDetailComponent } from './product /product-detail/product-detail.component';
 import { ProductUploadComponent } from './product /product-upload/product-upload.component';
-import { HomeEffects } from './product /store/product.effects';
+import { ProductEffects } from './product /store/product.effects';
 import { productsReducer } from './product /store/product.reducers';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { UserInfoHeaderComponent } from './product /user-info-header/user-info-header.component';
+import { UserProductEffects } from './product /store/user-product.effects';
+import { userProductsReducer } from './product /store/user-product.reducers';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { UserInfoHeaderComponent } from './product /user-info-header/user-info-h
     MatDialogModule,
     NgbModule,
     StoreModule.forFeature('Products', productsReducer),
-    EffectsModule.forFeature([HomeEffects]),
+    StoreModule.forFeature('User Products', userProductsReducer),
+    EffectsModule.forFeature([ProductEffects, UserProductEffects]),
   ],
   exports: [HomeComponent],
 })
