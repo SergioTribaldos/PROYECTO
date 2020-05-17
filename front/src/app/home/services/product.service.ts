@@ -15,9 +15,16 @@ export class ProductService {
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
   getAllProducts(user): Observable<Product[]> {
-    return this.http.get<Product[]>(
+    return this.http.post<Product[]>(
       `${environment.APIENDPOINT_BACKEND}/products/all`,
-      { params: user }
+      user
+    );
+  }
+
+  getUserProducts(user): Observable<Product[]> {
+    return this.http.post<Product[]>(
+      `${environment.APIENDPOINT_BACKEND}/products/user`,
+      user
     );
   }
 
