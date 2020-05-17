@@ -35,6 +35,24 @@ export class ProductsService {
     return this.mergeRawAndEntities(products);
   }
 
+  async getUserProducts(user: User): Promise<ProductResponseDto[]> {
+    const products = await getRepository(Product)
+      .createQueryBuilder('product')
+      .where('product.userId IN (:...id)', { id: [user.id] })
+      .leftJoinAndSelect('product.pictures', 'picture')
+      .leftJoinAndSelect('product.user', 'user')
+      .addSelect(
+        `ROUND(ST_Distance_Sphere(point(${user.lat}, ${user.lng}),coords)/1000)`,
+        'distance',
+      )
+      .addSelect('ST_X(coords)', 'lat')
+      .addSelect('ST_Y(coords)', 'lng')
+      .orderBy('distance', 'ASC')
+      .getRawAndEntities();
+
+    return this.mergeRawAndEntities(products);
+  }
+
   async getProductsFiltered(user: User, searchParams: SearchParams) {
     const queryBuilder = getRepository(Product).createQueryBuilder('product');
 
@@ -59,7 +77,7 @@ export class ProductsService {
     return this.mergeRawAndEntities(completeQuery);
   }
 
-  mergeRawAndEntities(products) {
+  private mergeRawAndEntities(products) {
     return products.entities.map(entity => {
       const firsMatchingProduct = products.raw.find(
         ({ product_id }) => product_id == entity.id,

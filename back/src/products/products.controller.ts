@@ -29,9 +29,14 @@ export class ProductsController {
     private readonly pictureService: PictureService,
   ) {}
 
-  @Get('all')
-  getAllProducts(@Query() user): Promise<ProductResponseDto[]> {
+  @Post('all')
+  getAllProducts(@Body() user): Promise<ProductResponseDto[]> {
     return this.productService.getAllProducts(user);
+  }
+
+  @Post('user')
+  getUserProducts(@Body() user): Promise<ProductResponseDto[]> {
+    return this.productService.getUserProducts(user);
   }
 
   @Get('viewed')
