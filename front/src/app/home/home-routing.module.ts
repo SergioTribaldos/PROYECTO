@@ -4,7 +4,6 @@ import { HomeComponent } from './home.component';
 import { ProductListComponent } from './product /product-list/product-list.component';
 import { ProductDetailComponent } from './product /product-detail/product-detail.component';
 import { ProductUploadComponent } from './product /product-upload/product-upload.component';
-import { ProductDetailResolver } from './product /store/product-detail-resolver';
 
 const routes: Routes = [
   {
@@ -30,6 +29,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [ProductDetailResolver],
+  providers: [],
 })
 export class HomeRoutingModule {}
