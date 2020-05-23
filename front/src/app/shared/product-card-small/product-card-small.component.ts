@@ -1,10 +1,12 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Product, Condition } from '../model/product';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Product } from '../../home/product /model/product';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
-import { ActivatedRoute, Router } from '@angular/router';
-import { setConditionClass } from '../constants/functions';
+import { Router } from '@angular/router';
+import { setConditionClass } from '../../home/product /constants/functions';
 import { environment } from 'src/environments/environment';
+
+import { USER_PRODUCT_ACTIONS } from 'src/app/user-menu/store/user-product.actions';
 
 @Component({
   selector: 'app-product-card-small',
@@ -15,10 +17,16 @@ export class ProductCardSmallComponent implements OnInit {
   @Input()
   product: Product;
 
+  @Input()
+  isUserProduct: boolean;
+
+  @Output()
+  deleteProductEmitter = new EventEmitter<number>();
+
   resumedDescriptionText: string;
   APIENDPOINT_BACKEND: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.APIENDPOINT_BACKEND = environment.APIENDPOINT_BACKEND;
@@ -36,5 +44,10 @@ export class ProductCardSmallComponent implements OnInit {
 
   setConditionClass() {
     return setConditionClass(this.product.condition);
+  }
+
+  deleteProduct(event) {
+    event.stopPropagation();
+    this.deleteProductEmitter.emit(this.product.id);
   }
 }

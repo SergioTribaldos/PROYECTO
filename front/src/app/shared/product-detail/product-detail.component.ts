@@ -1,21 +1,25 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
-import { Observable } from 'rxjs';
-import { Product } from '../model/product';
+import { Observable, combineLatest } from 'rxjs';
+
 import { AppState } from 'src/app/reducers';
 import { Router, ActivatedRoute } from '@angular/router';
-import { setConditionClass } from '../constants/functions';
+
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { selectOneProduct } from '../store/product.selector';
+
 import { environment } from 'src/environments/environment';
-import { concatMap, map, tap } from 'rxjs/operators';
-import { PRODUCT_ACTIONS } from '../store/product.actions';
+import { concatMap, map, tap, withLatestFrom, filter } from 'rxjs/operators';
+import { Product } from 'src/app/home/product /model/product';
+import { selectOneProduct } from 'src/app/home/product /store/product.selector';
+import { PRODUCT_ACTIONS } from 'src/app/home/product /store/product.actions';
+import { setConditionClass } from 'src/app/home/product /constants/functions';
+import { selectOneUserProduct } from 'src/app/user-menu/store/user-product.selectors';
 
 @Component({
   selector: 'dialog-overview-example-dialog',
@@ -47,13 +51,25 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.APIENDPOINT_BACKEND = environment.APIENDPOINT_BACKEND;
     const queryParams = this.route.snapshot.params.id;
-    this.product$ = this.store.pipe(
-      select(selectOneProduct(queryParams)),
+
+    this.product$ = combineLatest(
+      this.store.select(selectOneProduct(queryParams)),
+      this.store.select(selectOneUserProduct(queryParams))
+    ).pipe(
+      map(([one, two]) => one || two),
+      tap((product) => {
+        this.store.dispatch(
+          PRODUCT_ACTIONS.productViewed({ productId: product.id })
+        );
+      })
+    );
+
+    /*this.product$ = this.store.pipe(
+      withLatestFrom(selectOneProduct(queryParams)),
       tap(({ id }) => {
         this.store.dispatch(PRODUCT_ACTIONS.productViewed({ productId: id }));
       })
-    );
-    this.addViewToProduct();
+    );*/
   }
 
   setConditionClass(condition) {
@@ -69,6 +85,4 @@ export class ProductDetailComponent implements OnInit {
   expandMap() {
     this.toggleExpandMap = !this.toggleExpandMap;
   }
-
-  addViewToProduct() {}
 }

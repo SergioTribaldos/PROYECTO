@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductUploadDto } from '../product /model/product.dto';
 import { environment } from 'src/environments/environment';
 import { Product } from '../product /model/product';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AppState } from 'src/app/reducers';
 import { Store, select } from '@ngrx/store';
 import { getUserId } from 'src/app/auth/store/auth.selectors';
@@ -28,8 +28,16 @@ export class ProductService {
     );
   }
 
+  deleteUserProduct(productId): Observable<{ msg: string; status: string }> {
+    return this.http.get<any>(
+      `${environment.APIENDPOINT_BACKEND}/products/delete`,
+      {
+        params: { productId },
+      }
+    );
+  }
+
   searchProducts(user, params): Observable<Product[]> {
-    console.log(params);
     return this.http.post<Product[]>(
       `${environment.APIENDPOINT_BACKEND}/products/search`,
       { user, params }

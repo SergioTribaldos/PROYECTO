@@ -59,3 +59,15 @@ h3 {
 .description {
   overflow-wrap: break-word;
 }
+
+.additional-user-options {
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.material-icons {
+  font-size: 250%;
+  cursor: pointer;
+  z-index: 100;
+}

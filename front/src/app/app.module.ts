@@ -15,10 +15,11 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-
 import { HomeModule } from './home/home.module';
+import { UserMenuModule } from './user-menu/user-menu.module';
 import { AuthGuard } from './auth/login/login.guard';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
+import { UserMenuComponent } from './user-menu/user-menu.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -29,6 +30,11 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: './home/home.module#HomeModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user-menu',
+    loadChildren: './user-menu/user-menu.module#UserMenuModule',
     canActivate: [AuthGuard],
   },
 ];
@@ -45,7 +51,6 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MaterialModule,
     SharedModule,
-
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {

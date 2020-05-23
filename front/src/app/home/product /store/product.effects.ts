@@ -49,7 +49,7 @@ export class ProductEffects {
     () =>
       this.actions$.pipe(
         ofType(PRODUCT_ACTIONS.productViewed),
-        switchMap(({ productId }) =>
+        mergeMap(({ productId }) =>
           this.productService.addViewedProduct(productId)
         )
       ),

@@ -5,13 +5,17 @@ import {
   ViewChildren,
   QueryList,
 } from '@angular/core';
-import { Category, ProductTags, Condition } from '../product /model/product';
+import {
+  Category,
+  ProductTags,
+  Condition,
+} from '../../home/product /model/product';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { BUTTONS_LIST } from './constants';
 import { AppState } from 'src/app/reducers';
 import { Store } from '@ngrx/store';
-import { PRODUCT_ACTIONS } from '../product /store/product.actions';
+import { PRODUCT_ACTIONS } from '../../home/product /store/product.actions';
 
 @Component({
   selector: 'app-search-bar',

@@ -6,10 +6,11 @@ import { Store, select } from '@ngrx/store';
 import { getUser } from 'src/app/auth/store/auth.selectors';
 import { map } from 'rxjs/operators';
 import { getMergedRoute } from 'src/app/router/router-state.selectors';
-import { PRODUCT_ACTIONS } from '../product /store/product.actions';
+import { PRODUCT_ACTIONS } from '../../home/product /store/product.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Category, ProductTags } from '../product /model/product';
+import { Category, ProductTags } from '../../home/product /model/product';
 import { AuthActions } from 'src/app/auth/store/action-types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,7 @@ export class NavbarComponent implements OnInit {
   user$: Observable<User>;
   isSubBarActivated$: Observable<boolean>;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
     this.user$ = this.store.pipe(select(getUser));
@@ -41,5 +42,9 @@ export class NavbarComponent implements OnInit {
         PRODUCT_ACTIONS.searchProducts({ searchParams: { name: value } })
       );
     }
+  }
+
+  navigateTo(route: string) {
+    this.router.navigateByUrl(route);
   }
 }

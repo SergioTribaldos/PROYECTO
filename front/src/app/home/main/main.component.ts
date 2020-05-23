@@ -1,23 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-
 import { Observable } from 'rxjs';
+import { Product } from '../product /model/product';
+import { select, Store } from '@ngrx/store';
 import {
   selectAllProducts,
-  selectProducts,
   isLoading,
-} from '../store/product.selector';
+} from '../product /store/product.selector';
 import { AppState } from 'src/app/reducers';
-import { PRODUCT_ACTIONS } from '../store/product.actions';
-import { tap, map } from 'rxjs/operators';
-import { Product } from '../model/product';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css'],
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css'],
 })
-export class ProductListComponent implements OnInit {
+export class MainComponent implements OnInit {
   products$: Observable<Product[]>;
   loading$: Observable<boolean>;
 

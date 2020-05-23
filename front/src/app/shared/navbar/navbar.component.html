@@ -1,5 +1,5 @@
 <div class="navbar-container">
-  <div class="logo" routerLink="all">
+  <div class="logo" (click)="navigateTo('home/all')">
     W
   </div>
 
@@ -31,7 +31,7 @@
 
   <div>
     <mat-chip-list>
-      <mat-chip class="upload-product" routerLink="upload"
+      <mat-chip class="upload-product" (click)="navigateTo('home/upload')"
         ><span class="material-icons"> control_point </span>Subir
         producto</mat-chip
       >
@@ -47,7 +47,7 @@
 
 <mat-menu #appMenu="matMenu">
   <div (click)="$event.stopPropagation()">
-    <button mat-menu-item>Productos</button>
+    <button mat-menu-item (click)="navigateTo('user-menu')">Productos</button>
     <mat-divider></mat-divider>
     <div mat-menu-item (click)="logout()">Logout</div>
   </div>

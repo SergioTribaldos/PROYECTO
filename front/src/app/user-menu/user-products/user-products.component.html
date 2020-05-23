@@ -1,10 +1,10 @@
+<h1>Tus productos</h1>
 <div class="product-cards-container">
   <app-product-card-small
     *ngFor="let product of products$ | async"
     [product]="product"
+    [isUserProduct]="true"
+    (deleteProductEmitter)="deleteProduct($event)"
   >
   </app-product-card-small>
-  <div *ngIf="loading$ | async">
-    <mat-spinner></mat-spinner>
-  </div>
 </div>

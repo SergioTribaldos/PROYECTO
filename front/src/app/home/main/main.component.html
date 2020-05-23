@@ -1,0 +1,18 @@
+<div class="product-cards-container">
+  <app-product-card-small
+    *ngFor="let product of products$ | async"
+    [product]="product"
+  >
+  </app-product-card-small>
+  <div *ngIf="loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div
+    class="not-found-container"
+    *ngIf="!(loading$ | async) || (products$ | async).length == 0"
+  >
+    <h2>No se ha encontrado nada!</h2>
+    <img src="../../../assets/no-results.png" />
+  </div>
+</div>

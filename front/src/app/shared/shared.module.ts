@@ -3,10 +3,16 @@ import { CommonModule } from '@angular/common';
 import { MapComponent } from './map/map.component';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { MaterialModule } from './material/material.module';
-import { NavbarComponent } from '../home/navbar/navbar.component';
-import { EffectsModule } from '@ngrx/effects';
+
 import { UploadFileInputComponent } from './upload-file-input/upload-file-input.component';
 import { ChipsListComponent } from './chips-list/chips-list.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ProductCardSmallComponent } from './product-card-small/product-card-small.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserInfoHeaderComponent } from './user-info-header/user-info-header.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,8 +20,22 @@ import { ChipsListComponent } from './chips-list/chips-list.component';
     MapDialogComponent,
     UploadFileInputComponent,
     ChipsListComponent,
+    NavbarComponent,
+    SearchBarComponent,
+    ProductCardSmallComponent,
+    ProductDetailComponent,
+    UserInfoHeaderComponent,
   ],
-  imports: [CommonModule, MaterialModule],
-  exports: [MapComponent, UploadFileInputComponent, ChipsListComponent],
+  imports: [CommonModule, RouterModule, MaterialModule, NgbModule],
+  exports: [
+    MapComponent,
+    UploadFileInputComponent,
+    ChipsListComponent,
+    NavbarComponent,
+    SearchBarComponent,
+    ProductCardSmallComponent,
+    ProductDetailComponent,
+    UserInfoHeaderComponent,
+  ],
 })
 export class SharedModule {}

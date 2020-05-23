@@ -1,0 +1,23 @@
+.side-nav {
+  width: 140px;
+}
+.button {
+  margin-top: 50px;
+}
+button {
+  width: 60px;
+  height: 60px;
+}
+
+.button button {
+  margin: auto;
+}
+
+.button span {
+  margin-top: 8px;
+  text-align: center;
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
