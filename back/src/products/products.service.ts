@@ -2,19 +2,26 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './product.entity';
-import { Repository, getRepository, MoreThan } from 'typeorm';
+import { Repository, getRepository } from 'typeorm';
 
 import { ProductResponseDto } from './product-response.dto';
 import { User } from 'src/user/user.entity';
 import { SearchParams } from './interfaces';
 import { QUERY_ADD_WHERE } from './constants';
-import { SUCCESFUL_MESSAGES, RESPONSE_STATUS } from 'src/shared/constants';
+import {
+  SUCCESFUL_MESSAGES,
+  RESPONSE_STATUS,
+  ERROR_MESSAGES,
+} from 'src/shared/constants';
+import { Picture } from 'src/pictures/pictures.entity';
 
 @Injectable()
 export class ProductsService {
   constructor(
     @InjectRepository(Product)
-    private productRepository: Repository<Product>, //private pictureRepository: Repository<Picture>,
+    private productRepository: Repository<Product>,
+    @InjectRepository(Picture)
+    private pictureRepository: Repository<Picture>,
   ) {}
 
   async getAllProducts(user: User): Promise<ProductResponseDto[]> {
@@ -101,5 +108,28 @@ export class ProductsService {
       { id: productId },
       { viewed_times: () => 'viewed_times + 1' },
     );
+  }
+
+  async deleteProduct(productId: number) {
+    await getRepository(Picture)
+      .createQueryBuilder('picture')
+      .delete()
+      .where('productId = :productId', { productId: productId })
+      .execute();
+
+    const { raw } = await this.productRepository.delete({ id: productId });
+
+    const message =
+      raw.affectedRows != 0
+        ? {
+            msg: SUCCESFUL_MESSAGES.DELETE_PRODUCT,
+            status: RESPONSE_STATUS.OK,
+          }
+        : {
+            msg: ERROR_MESSAGES.DELETE_PRODUCT_FAIL,
+            status: RESPONSE_STATUS.KO,
+          };
+
+    return message;
   }
 }

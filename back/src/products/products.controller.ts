@@ -44,6 +44,12 @@ export class ProductsController {
     return this.productService.addViewedProduct(productId);
   }
 
+  @Get('delete')
+  async deleteProduct(@Query() { productId }) {
+    this.deleteFolder(productId);
+    return await this.productService.deleteProduct(productId);
+  }
+
   @Post('search')
   async searchProducts(@Body() searchParams) {
     return this.productService.getProductsFiltered(
@@ -101,14 +107,18 @@ export class ProductsController {
     return product;
   }
 
-  renameFolder({ tempFolder, newFolder }): void {
+  private renameFolder({ tempFolder, newFolder }): void {
     const tempAddress = `${BASE_UPLOAD_FOLDER}${tempFolder}/`;
     const newAddress = `${BASE_UPLOAD_FOLDER}${newFolder}/`;
 
     fs.renameSync(tempAddress, newAddress);
   }
 
-  populatePicturesURLs({ files, productId }): string[] {
+  private deleteFolder(folderName: string): void {
+    fs.rmdirSync(`${BASE_UPLOAD_FOLDER}${folderName}`, { recursive: true });
+  }
+
+  private populatePicturesURLs({ files, productId }): string[] {
     const picturesURLs = [];
     for (const { filename } of files) {
       picturesURLs.push(`images/${productId}/${filename} `);
