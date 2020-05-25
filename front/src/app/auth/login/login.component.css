@@ -2,11 +2,7 @@
   width: 400px;
   margin: auto;
 }
-mat-label {
-}
+
 mat-form-field {
   display: block;
-}
-
-input {
 }

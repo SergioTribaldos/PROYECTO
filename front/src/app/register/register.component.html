@@ -1,4 +1,4 @@
-<h1>Wallarock</h1>
+<span class="wallarock-header">Wallarock</span>
 <div class="container">
   <form [formGroup]="form" class="form-container">
     <div class="form-field-row">
@@ -34,7 +34,7 @@
 
     <div class="form-field-row">
       <button
-        mat-raised-button
+        mat-flat-button
         class="select-location-btn"
         color="primary"
         (click)="selectLocation()"
@@ -45,16 +45,16 @@
         >Selecciona tu ubicacion</mat-error
       >
     </div>
-    <div class="form-field-row"></div>
-
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="!isCorrectForm"
-      (click)="registerUser()"
-    >
-      Registrate
-    </button>
+    <div class="form-field-row register" fxLayoutAlign="center">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!isCorrectForm"
+        (click)="registerUser()"
+      >
+        Registrate
+      </button>
+    </div>
   </form>
 </div>
 

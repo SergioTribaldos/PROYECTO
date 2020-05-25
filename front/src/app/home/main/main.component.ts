@@ -17,10 +17,9 @@ export class MainComponent implements OnInit {
   products$: Observable<Product[]>;
   loading$: Observable<boolean>;
 
-  constructor(private store: Store<AppState>) {}
-
-  ngOnInit(): void {
+  constructor(private store: Store<AppState>) {
     this.products$ = this.store.pipe(select(selectAllProducts));
     this.loading$ = this.store.pipe(select(isLoading));
   }
+  ngOnInit(): void {}
 }

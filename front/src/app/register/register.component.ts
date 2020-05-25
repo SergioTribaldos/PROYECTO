@@ -20,6 +20,7 @@ import { RegisterService } from './register.service';
 import { UserRegisterDto } from './user-register.dto';
 import { map } from 'rxjs/operators';
 import { NotificationsService } from '@shared/notifications.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +37,8 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private dialog: MatDialog,
     private registerService: RegisterService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private router: Router
   ) {
     this.form = fb.group(
       {
@@ -73,12 +75,11 @@ export class RegisterComponent implements OnInit {
     const dialogRef = this.dialog.open(MapDialogComponent, {
       data: { coordinates: '' },
       width: '80%',
-      height: '80%',
+      height: '70%',
       disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      // Add coordinates data and validate after coordinates info is available
       this.form.setControl(
         'coordinates',
         new FormControl(result.coordinates, Validators.required)
@@ -97,8 +98,11 @@ export class RegisterComponent implements OnInit {
 
     this.registerService
       .register(userRegisterData)
-      .subscribe(({ msg, msgType }) => {
-        this.notificationsService.showNotification(msg, msgType);
+      .subscribe(({ msg, status }) => {
+        this.notificationsService.showNotification(msg, status);
+        setTimeout(() => {
+          this.router.navigateByUrl('login');
+        }, 3500);
       });
   }
 }

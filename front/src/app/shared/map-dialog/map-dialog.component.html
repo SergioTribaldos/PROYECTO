@@ -12,16 +12,22 @@
   </div>
 </div>
 
-<div mat-dialog-actions>
-  <button mat-button (click)="cancelAndClose()" [disabled]="isLoadingContent">
-    Cancelar
-  </button>
+<div mat-dialog-actions fxLayoutAlign="end">
   <button
-    mat-button
+    mat-raised-button
+    color="primary"
     [mat-dialog-close]="data.coordinates"
     [disabled]="isLoadingContent"
     cdkFocusInitial
   >
     Aceptar
+  </button>
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="cancelAndClose()"
+    [disabled]="isLoadingContent"
+  >
+    Cancelar
   </button>
 </div>

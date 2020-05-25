@@ -4,8 +4,8 @@ export const icon = {
   icon: L.icon({
     iconAnchor: [13, 0],
     // specify the path here
-    iconUrl: './assets/map-img/marker-icon.png',
-    shadowUrl: './assets/map-img/marker-shadow.png',
+    iconUrl: 'assets/map-img/marker-icon.png',
+    shadowUrl: 'assets/map-img/marker-shadow.png',
   }),
 };
 

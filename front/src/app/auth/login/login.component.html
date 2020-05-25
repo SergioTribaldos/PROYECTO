@@ -1,3 +1,4 @@
+<div class="wallarock-header">Wallarock</div>
 <div class="container">
   <form class="example-form" [formGroup]="form">
     <mat-form-field appearance="outline">
@@ -10,16 +11,18 @@
       <input matInput type="password" formControlName="password" />
     </mat-form-field>
 
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="!isCorrectForm"
-      (click)="login()"
-    >
-      Login
-    </button>
-    <button mat-raised-button color="primary" routerLink="../register">
-      Register
-    </button>
+    <div fxLayoutAlign="center" fxLayoutGap="12px">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!isCorrectForm"
+        (click)="login()"
+      >
+        Login
+      </button>
+      <button mat-stroked-button color="primary" routerLink="../register">
+        Registrate
+      </button>
+    </div>
   </form>
 </div>
