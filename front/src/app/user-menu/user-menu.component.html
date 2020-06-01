@@ -3,18 +3,20 @@
   <mat-sidenav class="side-nav" mode="side" opened>
     <div class="side-buttons-container">
       <div class="button" fxLayout="column" routerLink="user-products">
-        <button
-          mat-mini-fab
-          color="primary"
-          aria-label="Example icon button with a menu icon"
-        >
+        <button mat-mini-fab color="primary">
           <mat-icon>list</mat-icon>
         </button>
         <span>Productos</span>
       </div>
+      <div class="button" fxLayout="column" routerLink="chat">
+        <button mat-mini-fab color="primary">
+          <mat-icon>chat</mat-icon>
+        </button>
+        <span>Chat</span>
+      </div>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <router-outlet ></router-outlet>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
