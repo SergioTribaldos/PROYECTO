@@ -1,6 +1,9 @@
 @import "../../../custom-theme.scss";
 :host {
   display: block;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 .navbar-container {
   display: flex;
@@ -8,6 +11,9 @@
   width: 100%;
   height: 70px;
   background-color: mat-color($front-primary);
+  position: sticky;
+  top: 0px;
+  z-index: 100;
 }
 
 .logo {

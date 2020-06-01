@@ -1,7 +1,8 @@
 <div class="card-container">
   <mat-card *ngIf="product$ | async as product">
     <mat-card-content>
-      <app-user-info-header [user]="product.user"> </app-user-info-header>
+      <app-user-info-header [user]="product.user" [product]="product">
+      </app-user-info-header>
 
       <div class="carousel-container">
         <ngb-carousel #carousel [interval]="0" *ngIf="product.pictures">

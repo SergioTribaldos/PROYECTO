@@ -12,7 +12,7 @@ import { getUserId } from 'src/app/auth/store/auth.selectors';
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private http: HttpClient, private store: Store<AppState>) {}
+  constructor(private http: HttpClient) {}
 
   getAllProducts(user): Observable<Product[]> {
     return this.http.post<Product[]>(
@@ -52,7 +52,6 @@ export class ProductService {
   }
 
   addViewedProduct(productId) {
-    console.log(productId);
     return this.http.get<any>(
       `${environment.APIENDPOINT_BACKEND}/products/viewed`,
       {

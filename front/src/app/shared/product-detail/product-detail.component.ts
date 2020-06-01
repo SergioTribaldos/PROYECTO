@@ -1,20 +1,15 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-
+import { Component, OnInit, Inject } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
-
 import { AppState } from 'src/app/reducers';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-
 import { environment } from 'src/environments/environment';
-import { concatMap, map, tap, withLatestFrom, filter } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Product } from 'src/app/home/product /model/product';
 import { selectOneProduct } from 'src/app/home/product /store/product.selector';
 import { PRODUCT_ACTIONS } from 'src/app/home/product /store/product.actions';
@@ -63,13 +58,6 @@ export class ProductDetailComponent implements OnInit {
         );
       })
     );
-
-    /*this.product$ = this.store.pipe(
-      withLatestFrom(selectOneProduct(queryParams)),
-      tap(({ id }) => {
-        this.store.dispatch(PRODUCT_ACTIONS.productViewed({ productId: id }));
-      })
-    );*/
   }
 
   setConditionClass(condition) {
