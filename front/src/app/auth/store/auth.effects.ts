@@ -11,6 +11,8 @@ import { ProductService } from 'src/app/home/services/product.service';
 import { PRODUCT_ACTIONS } from 'src/app/home/product /store/product.actions';
 import { AppState } from 'src/app/reducers';
 import { Store, select } from '@ngrx/store';
+import { Socket } from 'ngx-socket-io';
+import { ChatService } from '@shared/chat.service';
 
 @Injectable()
 export class AuthEffects {
@@ -19,6 +21,7 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.loginSuccess),
         tap((action) => {
+          this.chatService.connect(action.user.id);
           this.router.navigate(['home/all']);
           localStorage.setItem(
             'userToken',
@@ -33,6 +36,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.logout),
       map(() => {
+        this.chatService.disconnect();
         localStorage.removeItem('userToken');
         this.router.navigate(['/login']);
         return AuthActions.userLoggedOut();
@@ -74,6 +78,7 @@ export class AuthEffects {
     private router: Router,
     private authService: AuthService,
     private notificationService: NotificationsService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private chatService: ChatService
   ) {}
 }

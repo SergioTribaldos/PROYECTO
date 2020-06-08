@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HomeModule } from './home/home.module';
+import { UserMenuModule } from './user-menu/user-menu.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -15,11 +16,9 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { HomeModule } from './home/home.module';
-import { UserMenuModule } from './user-menu/user-menu.module';
 import { AuthGuard } from './auth/login/login.guard';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
-import { UserMenuComponent } from './user-menu/user-menu.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -38,6 +37,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 ];
+
+const config: SocketIoConfig = {
+  url: 'http://localhost:3000',
+  options: { ee: 'fsdfds' },
+};
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent],
@@ -64,11 +68,11 @@ const routes: Routes = [
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
-
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
       routerState: RouterState.Minimal,
     }),
+    //SocketIoModule.forRoot(config),
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

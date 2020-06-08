@@ -10,8 +10,6 @@ export const initialAuthState: AuthState = {
   user: undefined,
 };
 
-// Esta funcion calcula una nueva version del state basado en el estado anterior
-// y la accion que le mandamos
 export const authReducer = createReducer(
   initialAuthState,
   on(AuthActions.loginSuccess, (state, action) => {

@@ -13,6 +13,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserInfoHeaderComponent } from './user-info-header/user-info-header.component';
 import { RouterModule } from '@angular/router';
+import { ChatService } from './chat.service';
 
 @NgModule({
   declarations: [

@@ -18,7 +18,7 @@ export class UserInfoHeaderComponent implements OnInit {
 
   goToChat() {
     this.router.navigate(['user-menu/chat'], {
-      queryParams: { productUserId: this.user.id, productId: this.product.id },
+      queryParams: { sellerId: this.user.id, productId: this.product.id },
     });
   }
 }

@@ -17,6 +17,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -40,6 +41,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSliderModule,
     MatDividerModule,
     MatSidenavModule,
+    MatListModule,
   ],
   exports: [
     CommonModule,
@@ -61,6 +63,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSliderModule,
     MatDividerModule,
     MatSidenavModule,
+    MatListModule,
   ],
 })
 export class MaterialModule {}

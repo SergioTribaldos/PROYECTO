@@ -5,6 +5,7 @@ import { AuthActions } from './auth/store/action-types';
 import { AuthService } from './auth/services/auth.service';
 import { AppState } from './reducers';
 import { Observable } from 'rxjs';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-root',

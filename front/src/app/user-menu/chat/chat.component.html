@@ -1,0 +1,88 @@
+<mat-sidenav-container class="chat-container">
+  <mat-sidenav mode="side" opened>
+    <div class="inbox-title">
+      Bandeja de entrada
+    </div>
+
+    <mat-selection-list [multiple]="false">
+      <mat-list-option
+        *ngIf="newConversation$ | async as product"
+        (click)="selectInboxConversation(product)"
+      >
+        <div class="inbox-card" fxLayoutAlign="start" fxLayoutGap="20px">
+          <img
+            fxFlex="40%"
+            [src]="APIENDPOINT_BACKEND + '/' + product.pictures[0].url"
+          />
+          <div fxLayout="column" fxLayoutAlign="space-around" fxFlex>
+            [src]="APIENDPOINT_BACKEND + '/' + product.pictures[0].url"
+          </div>
+        </div>
+      </mat-list-option>
+
+      <mat-list-option
+        *ngFor="let conversation of serverConversations$ | async"
+        (click)="selectInboxConversation(conversation)"
+      >
+        <div class="inbox-card" fxLayoutAlign="start" fxLayoutGap="20px">
+          <img
+            fxFlex="40%"
+            [src]="APIENDPOINT_BACKEND + '/' + conversation.pictureUrl"
+          />
+          <div fxLayout="column" fxLayoutAlign="space-around" fxFlex>
+            <div class="conversation-title">{{ conversation.title }}</div>
+          </div>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-sidenav>
+  <mat-sidenav-content fxLayout>
+    <div class="central-chat" fxFlex="70%">
+      <div #container class="messages-container-box" fxLayout="column-reverse">
+        <div id="container" class="messages-container">
+          <div
+            class="message-row"
+            [ngClass]="{ 'user-message': message.senderId == userId }"
+            fxLayoutAlign="start"
+            *ngFor="let message of conversationMessages"
+          >
+            <div class="message-wrapper">
+              <span class="message">
+                {{ message.message }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat-input-container">
+        <div class="input-text" fxLayoutAlign="center center">
+          <input
+            #messageInput
+            type="text"
+            (keyup.enter)="sendMessage($event)"
+          /><span class="material-icons send-icon">
+            send
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedProduct" class="right-product-resume" fxFlex="30%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ selectedProduct.title }}</mat-card-title>
+          <mat-card-subtitle>{{ selectedProduct.price }} €</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          [src]="APIENDPOINT_BACKEND + '/' + selectedProduct.productPicture.url"
+        />
+        <mat-card-content>
+          <p>
+            {{ selectedProduct.description }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

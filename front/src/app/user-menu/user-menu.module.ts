@@ -5,6 +5,7 @@ import { UserProductsComponent } from './user-products/user-products.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '@shared/material/material.module';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
         component: UserProductsComponent,
       },
       {
+        path: 'chat',
+        component: ChatComponent,
+      },
+      {
         path: '**',
         component: UserProductsComponent,
       },
@@ -24,14 +29,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [UserMenuComponent, UserProductsComponent],
+  declarations: [UserMenuComponent, UserProductsComponent, ChatComponent],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
     MaterialModule,
     RouterModule.forChild(routes),
-    //EffectsModule.forFeature([UserProductEffects]),
   ],
 })
 export class UserMenuModule {}

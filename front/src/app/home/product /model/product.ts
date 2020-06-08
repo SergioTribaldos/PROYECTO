@@ -15,6 +15,7 @@ export interface Product {
   distance_to_user?: number;
   uploaded_at?: string;
   user?: User;
+  productPicture?: { id: number; url: string };
 }
 
 export interface Picture {

@@ -1,0 +1,124 @@
+mat-sidenav {
+  width: 20%;
+}
+mat-sidenav-content {
+  height: 100%;
+}
+.central-chat {
+  height: 100%;
+}
+
+.chat-container {
+  height: 100%;
+}
+.chat-input-container {
+  width: 100%;
+  height: 8%;
+  position: absolute;
+  bottom: 15px;
+  border-top: 1px solid lightgray;
+}
+.input-text {
+  width: 100%;
+  height: 100%;
+}
+
+.input-text input {
+  width: 80%;
+  height: 42px;
+  border-radius: 21px;
+  background-color: #eceff1;
+  border: 1px solid transparent;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 0.875rem;
+  color: #253238;
+  padding: 0 32px 0 44px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  outline: none;
+  font-weight: 400;
+  outline: 0 none;
+  transition: all 0.5s;
+}
+
+.input-text input:focus {
+  border: 1px solid #feb300;
+  background: white;
+}
+.send-icon {
+  transform: translate(-41px, 0px);
+}
+
+.inbox-title {
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  font-size: 150%;
+  font-weight: 400;
+  padding: 10px;
+  color: gray;
+}
+mat-selection-list {
+  padding-top: 0px !important;
+}
+mat-list-option {
+  height: 80px !important;
+  border-bottom: 1px solid lightgray;
+}
+
+.inbox-card img {
+  height: 50px;
+  width: 40%;
+  object-fit: scale-down;
+}
+.inbox-card .conversation-title {
+  white-space: nowrap;
+  width: 210px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.messages-container-box {
+  height: 90%;
+  overscroll-behavior-y: contain;
+  overflow-y: scroll;
+}
+.messages-container {
+  padding: 10px;
+}
+.message-row {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.message-wrapper {
+  border: 1px solid #9c9c9c;
+  border-radius: 50px;
+  width: fit-content;
+  max-width: 65%;
+  padding: 10px 20px 10px 20px;
+  background-color: #e1e1e1;
+}
+.message {
+  font-size: 110%;
+  word-break: break-all;
+  font-weight: 400;
+}
+
+.user-message {
+  place-content: flex-end !important;
+}
+.user-message .message-wrapper {
+  background-color: white;
+}
+
+.right-product-resume {
+  padding: 30px;
+}
+
+.mat-card-image {
+  max-height: 300px;
+  object-fit: cover;
+}
