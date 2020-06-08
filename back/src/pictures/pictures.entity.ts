@@ -18,6 +18,7 @@ export class Picture {
   @ManyToOne(
     type => Product,
     product => product.id,
+    { onDelete: 'CASCADE' },
   )
   product: Product;
 }

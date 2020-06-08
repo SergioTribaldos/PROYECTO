@@ -13,6 +13,11 @@ import { Product } from './products/product.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { Picture } from './pictures/pictures.entity';
+import { ChatModule } from './chat/chat.module';
+import { Message } from './messages/message.entity';
+import { MessagesController } from './messages/messages.controller';
+import { MessageService } from './messages/message.service';
+import { Conversation } from './messages/conversation.entity';
 
 @Module({
   imports: [
@@ -25,13 +30,14 @@ import { Picture } from './pictures/pictures.entity';
       username: 'SERGIO',
       password: '1234',
       database: 'PROYECTO',
-      entities: [User, Product, Picture],
+      entities: [User, Product, Picture, Message, Conversation],
       synchronize: true,
     }),
     ProductsModule,
+    ChatModule,
   ],
-  controllers: [AppController, ProductsController],
-  providers: [AppService],
+  controllers: [AppController, ProductsController, MessagesController],
+  providers: [AppService, MessageService],
 })
 export class AppModule {
   constructor(private connection: Connection) {}

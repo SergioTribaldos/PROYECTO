@@ -5,9 +5,12 @@ import {
   Unique,
   ManyToOne,
   OneToMany,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { User } from 'src/user/user.entity';
 import { Picture } from 'src/pictures/pictures.entity';
+import { Conversation } from 'src/messages/conversation.entity';
 
 @Entity()
 export class Product {
@@ -46,12 +49,21 @@ export class Product {
   @ManyToOne(
     type => User,
     user => user.id,
+    { onDelete: 'CASCADE' },
   )
   user: User;
 
   @OneToMany(
     type => Picture,
     picture => picture.product,
+    { onDelete: 'CASCADE' },
   )
   pictures: Picture[];
+
+  @ManyToMany(
+    type => Conversation,
+    conversation => conversation.id,
+    { onDelete: 'CASCADE' },
+  )
+  conversations: Conversation[];
 }
