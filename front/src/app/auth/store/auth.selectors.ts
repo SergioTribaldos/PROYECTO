@@ -3,8 +3,6 @@ import { AuthState } from './auth.reducers';
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
-// Crea una funcion que mapea solo en caso de que haya algun cambio en el state
-// (primer argumento), en caso afirmativo, ejecutara la funcion de mapeo del segundo argumento
 export const isLoggedIn = createSelector(selectAuthState, (auth) => {
   return !!auth.user;
 });
