@@ -57,8 +57,9 @@
   white-space: nowrap;
   outline: none;
   font-weight: 400;
+  font-size: 120%;
 }
-svg {
+.search-icon {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -68,6 +69,8 @@ svg {
   width: 28px;
   height: 28px;
   z-index: 1;
+  font-size: 28px;
+  opacity: 0.7;
 }
 
 .search-input::placeholder {
@@ -88,7 +91,8 @@ svg {
   background-color: white !important;
   font-weight: 300;
 }
-.material-icons {
+.upload-product-icon,
+.user-icon {
   font-size: 24px;
   margin-right: 6px;
   color: mat-color($front-primary) !important ;

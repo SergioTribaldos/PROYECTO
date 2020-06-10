@@ -5,22 +5,9 @@
 
   <div class="search-container">
     <div class="input-container">
-      <svg
-        class="search-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        name="glass_icon"
-        viewBox="0 0 48 48"
-        alt="location arrow"
-        size="16"
-      >
-        <path
-          fill="#90A4AE"
-          stroke-width="4"
-          d="M31.263 32.547a1.975 1.975 0 0 1 2.717 0l4.454 4.284a1.81 1.81 0 0 1 0 2.627 1.975 1.975 0 0 1-2.717 0l-4.454-4.283a1.81 1.81 0 0 1 0-2.628zm-.46-2.569c-4.988 4.797-13.072 4.797-18.06 0-4.99-4.8-4.99-12.581 0-17.38 4.988-4.797 13.072-4.797 18.06 0 4.99 4.799 4.99 12.58 0 17.38zm-2.297-2.21c3.722-3.578 3.722-9.382 0-12.961-3.72-3.577-9.747-3.577-13.466 0-3.722 3.579-3.722 9.383 0 12.962 3.72 3.576 9.747 3.576 13.466 0z"
-        ></path>
-      </svg>
+      <span class="material-icons search-icon">
+        search
+      </span>
       <input
         class="search-input"
         placeholder="Buscar"
@@ -32,11 +19,20 @@
   <div>
     <mat-chip-list>
       <mat-chip class="upload-product" (click)="navigateTo('home/upload')"
-        ><span class="material-icons"> control_point </span>Subir
-        producto</mat-chip
+        ><span class="material-icons upload-product-icon"> control_point </span
+        >Subir producto</mat-chip
       >
+      <mat-chip class="upload-product" (click)="navigateTo('user-menu/chat')"
+        ><span class="material-icons upload-product-icon"> chat </span>
+        <span
+          [matBadge]="unreadMessages$ | async"
+          matBadgeOverlap="false"
+          matBadgeColor="warn"
+          >Chat</span
+        >
+      </mat-chip>
       <mat-chip [matMenuTriggerFor]="appMenu"
-        ><span class="material-icons"> face </span>Usuario</mat-chip
+        ><span class="material-icons user-icon"> face </span>Usuario</mat-chip
       >
     </mat-chip-list>
   </div>
