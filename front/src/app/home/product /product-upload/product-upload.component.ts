@@ -17,6 +17,8 @@ import { take } from 'rxjs/operators';
 import { ProductService } from '../../services/product.service';
 import { ChipsListComponent } from '@shared/chips-list/chips-list.component';
 import { NotificationsService } from '@shared/notifications.service';
+import { PRODUCT_ACTIONS } from '../store/product.actions';
+import { USER_PRODUCT_ACTIONS } from 'src/app/user-menu/store/user-product.actions';
 
 @Component({
   selector: 'app-product-upload',
@@ -101,6 +103,7 @@ export class ProductUploadComponent implements OnInit {
       .uploadProduct(this.formData)
       .subscribe(({ msg, status }) => {
         this.notificationsService.showNotification(msg, status);
+        this.store.dispatch(USER_PRODUCT_ACTIONS.reloadUserProducts());
       });
   }
 
