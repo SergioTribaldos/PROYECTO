@@ -17,10 +17,14 @@ export const selectAllUserProducts = createSelector(
 export const selectUserProducts = createSelector(
   selectAllUserProducts,
   (products) => {
-    // La consulta se realizara 2 veces, una al principio cuando no haya nada, y otra
-    // cuando el store de courses se rellene
-
     return products.filter((product) => product);
+  }
+);
+
+export const areUserProductsLoaded = createSelector(
+  selectAllUserProducts,
+  (products) => {
+    return products.length == 0;
   }
 );
 

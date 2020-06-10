@@ -16,6 +16,13 @@ export const selectProducts = createSelector(selectAllProducts, (products) => {
   return products;
 });
 
+export const areProductsLoaded = createSelector(
+  selectAllProducts,
+  (products) => {
+    return products.length == 0;
+  }
+);
+
 export const selectOneProduct = (_id: number) =>
   createSelector(selectAllProducts, (products) => {
     return products.find(({ id }) => id == _id);
