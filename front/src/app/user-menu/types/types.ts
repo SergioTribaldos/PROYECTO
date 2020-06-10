@@ -7,4 +7,5 @@ export interface ProductMiniature {
   buyerId: string;
   sellerId: string;
   product: Product;
+  recieverUserName: string;
 }
