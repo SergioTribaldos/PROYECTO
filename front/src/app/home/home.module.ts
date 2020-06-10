@@ -16,6 +16,7 @@ import { productsReducer } from './product /store/product.reducers';
 import { UserProductEffects } from '../user-menu/store/user-product.effects';
 import { userProductsReducer } from '../user-menu/store/user-product.reducers';
 import { MainComponent } from './main/main.component';
+import { chatReducer } from '../user-menu/chat/store/chat.reducers';
 
 @NgModule({
   declarations: [HomeComponent, ProductUploadComponent, MainComponent],
@@ -25,9 +26,9 @@ import { MainComponent } from './main/main.component';
     MaterialModule,
     HomeRoutingModule,
     MatDialogModule,
-
     StoreModule.forFeature('Products', productsReducer),
     StoreModule.forFeature('User Products', userProductsReducer),
+    StoreModule.forFeature('Chat', chatReducer),
     EffectsModule.forFeature([ProductEffects, UserProductEffects]),
   ],
   exports: [HomeComponent],
