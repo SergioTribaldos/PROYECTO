@@ -72,7 +72,6 @@ const config: SocketIoConfig = {
       stateKey: 'router',
       routerState: RouterState.Minimal,
     }),
-    //SocketIoModule.forRoot(config),
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],
