@@ -8,6 +8,7 @@ import { Message } from './message.entity';
 import { MessageDto, NewConversationDto } from 'src/chat/types';
 import { Conversation } from './conversation.entity';
 import { Product } from 'src/products/product.entity';
+import { User } from 'src/user/user.entity';
 
 @Injectable()
 export class MessageService {
@@ -16,6 +17,8 @@ export class MessageService {
     private messageRepository: Repository<Message>,
     @InjectRepository(Conversation)
     private conversationRepository: Repository<Conversation>,
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
   ) {}
 
   async addMessage(messageData: MessageDto): Promise<any> {
@@ -68,20 +71,33 @@ export class MessageService {
         'product.pictures',
         'picture',
       )
+
       .where('conversation.sellerId =:id ', { id: userId })
       .orWhere('conversation.buyerId =:id ', { id: userId })
       .getMany();
 
-    return products.map(conversation => {
+    const result = products.map(async conversation => {
+      const recieverUserName = this.userRepository.findOne({
+        where: {
+          id:
+            userId === conversation.buyerId
+              ? conversation.sellerId
+              : conversation.buyerId,
+        },
+      });
+
       return {
         buyerId: conversation.buyerId,
         sellerId: conversation.sellerId,
         conversationId: conversation.id,
+        recieverUserName: (await recieverUserName).name,
         title: conversation.products[0].title,
         pictureUrl: conversation.products[0]['productPicture']['url'],
         product: conversation.products[0],
       };
     });
+
+    return Promise.all(result);
   }
 
   async getConversationMessages(conversationId: number) {
