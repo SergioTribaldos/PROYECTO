@@ -18,6 +18,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -42,6 +43,7 @@ import { MatListModule } from '@angular/material/list';
     MatDividerModule,
     MatSidenavModule,
     MatListModule,
+    MatBadgeModule,
   ],
   exports: [
     CommonModule,
@@ -64,6 +66,7 @@ import { MatListModule } from '@angular/material/list';
     MatDividerModule,
     MatSidenavModule,
     MatListModule,
+    MatBadgeModule,
   ],
 })
 export class MaterialModule {}
