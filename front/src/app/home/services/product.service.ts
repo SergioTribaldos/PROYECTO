@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 import { AppState } from 'src/app/reducers';
 import { Store, select } from '@ngrx/store';
 import { getUserId } from 'src/app/auth/store/auth.selectors';
+import { User } from 'src/app/auth/model/user';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +15,10 @@ import { getUserId } from 'src/app/auth/store/auth.selectors';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  getAllProducts(user): Observable<Product[]> {
+  getAllProducts(user: User, skippedResults?: number): Observable<Product[]> {
     return this.http.post<Product[]>(
       `${environment.APIENDPOINT_BACKEND}/products/all`,
-      user
+      { user, skippedResults }
     );
   }
 
