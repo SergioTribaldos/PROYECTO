@@ -19,7 +19,6 @@ import { AuthEffects } from './store/auth.effects';
     EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: [LoginComponent],
-  exports: [LoginComponent],
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders<AuthModule> {
