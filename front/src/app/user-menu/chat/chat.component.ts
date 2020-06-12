@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { MessageService } from './message.service';
 import { MessageDto, NewConversationDto, ConversationMessage } from './types';
 import { ProductMiniature } from '../types/types';
+import { CHAT_ACTIONS } from './store/chat.actions';
 
 @Component({
   selector: 'app-chat',
@@ -20,8 +21,8 @@ import { ProductMiniature } from '../types/types';
 })
 export class ChatComponent implements OnInit {
   newConversation$: Observable<Product>;
-  serverConversations$: Observable<ProductMiniature>;
-  conversationMessages: ConversationMessage[];
+  serverConversations$: Observable<ProductMiniature[]>;
+  conversationMessages: ConversationMessage[] = [];
   userId: string;
   selectedChat: MessageDto;
   selectedProduct: Product;
@@ -40,6 +41,8 @@ export class ChatComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(CHAT_ACTIONS.resetMessagesRecieved());
+
     this.chatService.receiveChat().subscribe((message) => {
       if (message.conversationId === this.selectedChat.conversationId) {
         this.conversationMessages.push(message);

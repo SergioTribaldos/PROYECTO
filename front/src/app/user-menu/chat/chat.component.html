@@ -9,13 +9,20 @@
         *ngIf="newConversation$ | async as product"
         (click)="selectInboxConversation(product)"
       >
-        <div class="inbox-card" fxLayoutAlign="start" fxLayoutGap="20px">
+        <div
+          class="inbox-card"
+          fxLayoutAlign="center center"
+          fxLayoutGap="20px"
+        >
           <img
             fxFlex="40%"
             [src]="APIENDPOINT_BACKEND + '/' + product.pictures[0].url"
           />
           <div fxLayout="column" fxLayoutAlign="space-around" fxFlex>
-            [src]="APIENDPOINT_BACKEND + '/' + product.pictures[0].url"
+            <div class="conversation-user">
+              {{ product.user.name }}
+            </div>
+            <div class="conversation-title">{{ product.title }}</div>
           </div>
         </div>
       </mat-list-option>
@@ -30,6 +37,9 @@
             [src]="APIENDPOINT_BACKEND + '/' + conversation.pictureUrl"
           />
           <div fxLayout="column" fxLayoutAlign="space-around" fxFlex>
+            <div class="conversation-user">
+              {{ conversation.recieverUserName }}
+            </div>
             <div class="conversation-title">{{ conversation.title }}</div>
           </div>
         </div>
@@ -66,7 +76,6 @@
         </div>
       </div>
     </div>
-
     <div *ngIf="selectedProduct" class="right-product-resume" fxFlex="30%">
       <mat-card>
         <mat-card-header>
