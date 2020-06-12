@@ -30,8 +30,10 @@ export class ProductsController {
   ) {}
 
   @Post('all')
-  getAllProducts(@Body() user): Promise<ProductResponseDto[]> {
-    return this.productService.getAllProducts(user);
+  getAllProducts(
+    @Body() { user, skippedResults = 0 },
+  ): Promise<ProductResponseDto[]> {
+    return this.productService.getAllProducts(user, skippedResults);
   }
 
   @Post('user')

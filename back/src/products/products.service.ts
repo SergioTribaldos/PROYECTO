@@ -24,7 +24,10 @@ export class ProductsService {
     private pictureRepository: Repository<Picture>,
   ) {}
 
-  async getAllProducts(user: User): Promise<ProductResponseDto[]> {
+  async getAllProducts(
+    user: User,
+    skippedResults?: number,
+  ): Promise<ProductResponseDto[]> {
     const products = await getRepository(Product)
       .createQueryBuilder('product')
       .where('product.userId NOT IN (:...id)', { id: [user.id] })
@@ -37,6 +40,8 @@ export class ProductsService {
       .addSelect('ST_X(coords)', 'lat')
       .addSelect('ST_Y(coords)', 'lng')
       .orderBy('distance', 'ASC')
+      .skip(skippedResults)
+      .take(10)
       .getRawAndEntities();
 
     return this.mergeRawAndEntities(products);
