@@ -17,6 +17,7 @@ import { UserProductEffects } from '../user-menu/store/user-product.effects';
 import { userProductsReducer } from '../user-menu/store/user-product.reducers';
 import { MainComponent } from './main/main.component';
 import { chatReducer } from '../user-menu/chat/store/chat.reducers';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [HomeComponent, ProductUploadComponent, MainComponent],
@@ -30,6 +31,7 @@ import { chatReducer } from '../user-menu/chat/store/chat.reducers';
     StoreModule.forFeature('User Products', userProductsReducer),
     StoreModule.forFeature('Chat', chatReducer),
     EffectsModule.forFeature([ProductEffects, UserProductEffects]),
+    InfiniteScrollModule,
   ],
   exports: [HomeComponent],
 })

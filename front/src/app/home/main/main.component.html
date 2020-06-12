@@ -1,4 +1,9 @@
 <div
+  infinite-scroll
+  [infiniteScrollDistance]="scrollDistance"
+  [infiniteScrollUpDistance]="scrollUpDistance"
+  [infiniteScrollThrottle]="throttle"
+  (scrolled)="onScrollDown()"
   class="product-cards-container"
   *ngIf="(products$ | async).length != 0; else notFound"
 >
