@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
-import * as fromCourses from './product.reducers';
+import * as fromProducts from './product.reducers';
 import { ProductState } from './product.reducers';
 
 export const selectProductState = createFeatureSelector<ProductState>(
@@ -9,18 +9,16 @@ export const selectProductState = createFeatureSelector<ProductState>(
 
 export const selectAllProducts = createSelector(
   selectProductState,
-  fromCourses.selectAll
+  fromProducts.selectAll
 );
 
 export const selectProducts = createSelector(selectAllProducts, (products) => {
   return products;
 });
 
-export const areProductsLoaded = createSelector(
-  selectAllProducts,
-  (products) => {
-    return products.length == 0;
-  }
+export const isFirstLoading = createSelector(
+  selectProductState,
+  (products) => products.firstLoading
 );
 
 export const selectOneProduct = (_id: number) =>
@@ -31,4 +29,9 @@ export const selectOneProduct = (_id: number) =>
 export const isLoading = createSelector(
   selectProductState,
   (products) => products.loading
+);
+
+export const getSkippedResults = createSelector(
+  selectProductState,
+  (products) => products.resultsSkipped
 );

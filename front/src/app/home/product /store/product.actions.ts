@@ -5,6 +5,8 @@ import { EntityMap } from '@ngrx/entity';
 export const PRODUCT_ACTIONS = {
   loadProducts: createAction('[Home Page] Load products'),
 
+  loadMoreProducts: createAction('[Home Page] Load more products'),
+
   allProductsLoaded: createAction(
     '[Load products Effect] All products loaded',
     props<{ products: Product[] }>()
@@ -23,6 +25,11 @@ export const PRODUCT_ACTIONS = {
   searchProducts: createAction(
     '[Home Page] Search product',
     props<{ searchParams: any }>()
+  ),
+
+  searchProductsLoaded: createAction(
+    '[Search products Effect] Search products loaded',
+    props<{ products: Product[] }>()
   ),
 
   productViewed: createAction(
