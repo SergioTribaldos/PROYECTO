@@ -19,6 +19,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthGuard } from './auth/login/login.guard';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { ProductEffects } from './home/product /store/product.effects';
+import { UserProductEffects } from './user-menu/store/user-product.effects';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -67,7 +69,7 @@ const config: SocketIoConfig = {
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([ProductEffects, UserProductEffects]),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
       routerState: RouterState.Minimal,
