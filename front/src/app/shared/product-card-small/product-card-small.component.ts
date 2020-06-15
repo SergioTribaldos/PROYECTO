@@ -6,8 +6,6 @@ import { Router } from '@angular/router';
 import { setConditionClass } from '../../home/product /constants/functions';
 import { environment } from 'src/environments/environment';
 
-import { USER_PRODUCT_ACTIONS } from 'src/app/user-menu/store/user-product.actions';
-
 @Component({
   selector: 'app-product-card-small',
   templateUrl: './product-card-small.component.html',
