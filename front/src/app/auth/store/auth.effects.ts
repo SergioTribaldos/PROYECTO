@@ -13,6 +13,7 @@ import { AppState } from 'src/app/reducers';
 import { Store, select } from '@ngrx/store';
 import { Socket } from 'ngx-socket-io';
 import { ChatService } from '@shared/chat.service';
+import { USER_PRODUCT_ACTIONS } from 'src/app/user-menu/store/user-product.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -22,6 +23,8 @@ export class AuthEffects {
         ofType(AuthActions.loginSuccess),
         tap((action) => {
           this.chatService.connect(action.user.id);
+          this.store.dispatch(PRODUCT_ACTIONS.loadProducts());
+          this.store.dispatch(USER_PRODUCT_ACTIONS.loadUserProducts());
           this.router.navigate(['home/all']);
           localStorage.setItem(
             'userToken',
@@ -36,6 +39,8 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.logout),
       map(() => {
+        this.store.dispatch(USER_PRODUCT_ACTIONS.resetUserProducts());
+        this.store.dispatch(PRODUCT_ACTIONS.resetProducts());
         this.chatService.disconnect();
         localStorage.removeItem('userToken');
         this.router.navigate(['/login']);

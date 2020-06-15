@@ -8,6 +8,8 @@ export const USER_PRODUCT_ACTIONS = {
     '[Upload product] Reload user products after uploading'
   ),
 
+  resetUserProducts: createAction('[Logout] Reset user products'),
+
   allUserProductsLoaded: createAction(
     '[Load user products Effect] All user products loaded',
     props<{ products: Product[] }>()

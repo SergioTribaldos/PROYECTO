@@ -15,8 +15,6 @@ export class UserProductEffects {
   loadUserProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(USER_PRODUCT_ACTIONS.loadUserProducts),
-      mergeMap(() => this.store.pipe(select(areUserProductsLoaded))),
-      filter((areUserProductsLoaded) => areUserProductsLoaded),
       mergeMap(() => this.store.pipe(take(1), select(getUser))),
       mergeMap((user) => this.productService.getUserProducts(user)),
       map((products) =>

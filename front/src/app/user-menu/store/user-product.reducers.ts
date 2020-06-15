@@ -14,6 +14,9 @@ export const userProductsReducer = createReducer(
   }),
   on(USER_PRODUCT_ACTIONS.userProductDeleted, (state, action) => {
     return adapter.removeOne(action.productId, state);
+  }),
+  on(USER_PRODUCT_ACTIONS.resetUserProducts, (state) => {
+    return adapter.removeAll({ ...state });
   })
 );
 
