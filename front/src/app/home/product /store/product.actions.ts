@@ -7,6 +7,8 @@ export const PRODUCT_ACTIONS = {
 
   loadMoreProducts: createAction('[Home Page] Load more products'),
 
+  resetProducts: createAction('[Logout] Reset products'),
+
   allProductsLoaded: createAction(
     '[Load products Effect] All products loaded',
     props<{ products: Product[] }>()

@@ -22,8 +22,6 @@ export class ProductEffects {
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(PRODUCT_ACTIONS.loadProducts),
-      mergeMap(() => this.store.pipe(select(isFirstLoading))),
-      filter((isFirstLoading) => !isFirstLoading),
       withLatestFrom(this.store.pipe(select(getUser))),
       mergeMap(([_, user]) => this.productService.getAllProducts(user)),
       map((products) =>

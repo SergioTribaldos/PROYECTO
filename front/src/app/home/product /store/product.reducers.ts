@@ -39,6 +39,9 @@ export const productsReducer = createReducer(
       loading: true,
       resultsSkipped: state.resultsSkipped + 5,
     };
+  }),
+  on(PRODUCT_ACTIONS.resetProducts, (state) => {
+    return adapter.removeAll({ ...state });
   })
 );
 
