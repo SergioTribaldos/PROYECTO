@@ -16,19 +16,21 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @WebSocketServer() server: Server;
 
-  async handleConnection(client: Socket) {
+  handleConnection(client: Socket) {
     this.users.push({
       userId: client.handshake.query.userId,
       socketId: client.id,
     });
+    console.log('connect', this.users);
   }
 
-  async handleDisconnect(client: Socket) {
+  handleDisconnect(client: Socket) {
     this.users = this.users.filter(user => user.socketId !== client.id);
+    console.log('disconnect', this.users);
   }
 
   @SubscribeMessage('sendMessage')
-  async onChat(client: Socket, message: MessageDto) {
+  onChat(message: MessageDto) {
     this.messageService.addMessage(message);
 
     const recieverSocket: ConnectedUser = this.users.filter(
@@ -38,11 +40,5 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     if (!!recieverSocket) {
       this.server.in(recieverSocket.socketId).emit('chat', message);
     }
-  }
-
-  @SubscribeMessage('newConversation')
-  handleMessage(_, productData: MessageDto) {
-    //this.messageService.startNewConversation(productData);
-    //client.broadcast.emit('chat', message);
   }
 }
