@@ -34,8 +34,6 @@ export class MainComponent implements OnInit, OnDestroy {
     private store: Store<AppState>,
     private chatService: ChatService
   ) {
-    this.store.dispatch(PRODUCT_ACTIONS.loadProducts());
-    this.store.dispatch(USER_PRODUCT_ACTIONS.loadUserProducts());
     this.products$ = this.store.pipe(select(selectAllProducts));
     this.loading$ = this.store.pipe(select(isLoading));
   }
