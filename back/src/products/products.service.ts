@@ -14,6 +14,7 @@ import {
   ERROR_MESSAGES,
 } from 'src/shared/constants';
 import { Picture } from 'src/pictures/pictures.entity';
+import { Conversation } from 'src/messages/conversation.entity';
 
 @Injectable()
 export class ProductsService {
@@ -118,6 +119,12 @@ export class ProductsService {
   async deleteProduct(productId: number) {
     await getRepository(Picture)
       .createQueryBuilder('picture')
+      .delete()
+      .where('productId = :productId', { productId: productId })
+      .execute();
+
+    await getRepository(Conversation)
+      .createQueryBuilder('conversation')
       .delete()
       .where('productId = :productId', { productId: productId })
       .execute();
