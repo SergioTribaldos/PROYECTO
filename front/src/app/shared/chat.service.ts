@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Socket, SocketIoConfig } from 'ngx-socket-io';
 import { MessageDto } from '../user-menu/chat/types';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class ChatService {
 
   connect(userId: string) {
     const config: SocketIoConfig = {
-      url: 'http://localhost:3000',
+      url: environment.APIENDPOINT_BACKEND,
       options: { query: { userId: userId } },
     };
     this.socket = new Socket(config);
@@ -32,9 +33,5 @@ export class ChatService {
 
   receiveChat(): Observable<MessageDto> {
     return this.socket.fromEvent('chat');
-  }
-
-  getUsers() {
-    //return this.socket.fromEvent('users');
   }
 }
