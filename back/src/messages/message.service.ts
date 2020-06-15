@@ -37,6 +37,7 @@ export class MessageService {
     const conversation = new Conversation();
     conversation.buyerId = messageData.buyerId;
     conversation.sellerId = messageData.sellerId;
+    conversation.productId = messageData.productId;
 
     const product = new Product();
     product.id = messageData.productId;
