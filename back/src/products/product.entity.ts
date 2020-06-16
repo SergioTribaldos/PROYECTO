@@ -2,7 +2,6 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  Unique,
   ManyToOne,
   OneToMany,
   ManyToMany,
@@ -31,6 +30,7 @@ export class Product {
 
   @Column()
   price: number;
+
   @Column()
   accept_changes: boolean;
 
