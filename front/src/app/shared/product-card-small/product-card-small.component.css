@@ -57,8 +57,14 @@ h3 {
   height: 21px;
 }
 
+.price {
+  color: rgba(0, 0, 0, 0.54);
+}
+
 .description {
+  margin-top: 6px;
   overflow-wrap: break-word;
+  font-weight: 400;
 }
 
 .additional-user-options {
