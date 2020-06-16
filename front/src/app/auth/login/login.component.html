@@ -15,7 +15,7 @@
       <button
         mat-raised-button
         color="primary"
-        [disabled]="!isCorrectForm"
+        [disabled]="!form.valid"
         (click)="login()"
       >
         Login
