@@ -48,6 +48,7 @@ small {
 
 .description {
   overflow-wrap: break-word;
+  font-weight: 400;
 }
 
 ::ng-deep.mat-card-header-text {
