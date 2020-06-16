@@ -10,6 +10,8 @@ export interface Product {
   date_published: string;
   condition: Condition;
   viewed_times: number;
+  accept_changes: boolean;
+  price_negotiable: boolean;
   lat?: number;
   lng?: number;
   distance_to_user?: number;
