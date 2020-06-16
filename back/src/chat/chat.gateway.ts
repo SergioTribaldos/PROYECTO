@@ -30,7 +30,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('sendMessage')
-  onChat(message: MessageDto) {
+  onChat(client: Socket, message: MessageDto) {
     this.messageService.addMessage(message);
 
     const recieverSocket: ConnectedUser = this.users.filter(
