@@ -9,13 +9,9 @@
         *ngIf="newConversation$ | async as product"
         (click)="selectInboxConversation(product)"
       >
-        <div
-          class="inbox-card"
-          fxLayoutAlign="center center"
-          fxLayoutGap="20px"
-        >
+        <div class="inbox-card" fxLayoutAlign="start" fxLayoutGap="20px">
           <img
-            fxFlex="40%"
+            fxFlex="20%"
             [src]="APIENDPOINT_BACKEND + '/' + product.pictures[0].url"
           />
           <div fxLayout="column" fxLayoutAlign="space-around" fxFlex>
@@ -33,7 +29,7 @@
       >
         <div class="inbox-card" fxLayoutAlign="start" fxLayoutGap="20px">
           <img
-            fxFlex="40%"
+            fxFlex="20%"
             [src]="APIENDPOINT_BACKEND + '/' + conversation.pictureUrl"
           />
           <div fxLayout="column" fxLayoutAlign="space-around" fxFlex>

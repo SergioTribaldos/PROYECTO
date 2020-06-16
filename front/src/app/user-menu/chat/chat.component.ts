@@ -90,6 +90,7 @@ export class ChatComponent implements OnInit {
           recieverId: this.userId === sellerId ? 0 : sellerId,
           conversationId,
         };
+        this.conversationMessages.push({ ...this.selectedChat, message });
       });
   }
 
