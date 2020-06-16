@@ -29,6 +29,13 @@ export const PRODUCT_ACTIONS = {
     props<{ searchParams: any }>()
   ),
 
+  setHasSearchFilters: createAction(
+    '[Search bar] Set has search filters',
+    props<{ hasSearchFilters: boolean }>()
+  ),
+
+  resetResultsSkipped: createAction('[Search bar] Reset results skipped'),
+
   searchProductsLoaded: createAction(
     '[Search products Effect] Search products loaded',
     props<{ products: Product[] }>()

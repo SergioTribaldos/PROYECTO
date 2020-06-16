@@ -15,7 +15,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
 import { ProductService } from '../../services/product.service';
 import { getUser } from 'src/app/auth/store/auth.selectors';
-import { isFirstLoading, getSkippedResults } from './product.selector';
+import { getSkippedResults } from './product.selector';
 
 @Injectable()
 export class ProductEffects {

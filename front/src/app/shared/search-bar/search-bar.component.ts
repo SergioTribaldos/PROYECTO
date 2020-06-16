@@ -78,16 +78,35 @@ export class SearchBarComponent implements OnInit {
 
   search() {
     this.deleteFormNullValues();
+    const hasSearchFilters = Object.values(this.form.controls).some(
+      ({ value }) => value
+    );
+
+    this.store.dispatch(
+      PRODUCT_ACTIONS.setHasSearchFilters({ hasSearchFilters })
+    );
+
+    hasSearchFilters
+      ? this.searchProductsWithParams()
+      : this.performFirstProductsLoading();
 
     this.closeMenu();
-    this.store.dispatch(
-      PRODUCT_ACTIONS.searchProducts({ searchParams: this.form.value })
-    );
   }
 
   deleteFormNullValues() {
     Object.keys(this.form.value).forEach(
       (key) => this.form.value[key] === null && delete this.form.value[key]
     );
+  }
+
+  searchProductsWithParams() {
+    this.store.dispatch(
+      PRODUCT_ACTIONS.searchProducts({ searchParams: this.form.value })
+    );
+  }
+
+  performFirstProductsLoading() {
+    this.store.dispatch(PRODUCT_ACTIONS.resetResultsSkipped());
+    this.store.dispatch(PRODUCT_ACTIONS.loadProducts());
   }
 }

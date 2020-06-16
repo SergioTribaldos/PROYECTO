@@ -5,10 +5,10 @@ import { select, Store } from '@ngrx/store';
 import {
   selectAllProducts,
   isLoading,
+  getHasSearchFilters,
 } from '../product /store/product.selector';
 import { AppState } from 'src/app/reducers';
 import { PRODUCT_ACTIONS } from '../product /store/product.actions';
-import { USER_PRODUCT_ACTIONS } from 'src/app/user-menu/store/user-product.actions';
 import { takeUntil } from 'rxjs/operators';
 import { CHAT_ACTIONS } from 'src/app/user-menu/chat/store/chat.actions';
 import { ChatService } from '@shared/chat.service';
@@ -24,6 +24,7 @@ export class MainComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   resultsSkipped: number;
+  hasSearchFilters: boolean;
 
   throttle = 40;
   scrollDistance = 1;
@@ -44,6 +45,12 @@ export class MainComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.store.dispatch(CHAT_ACTIONS.addMessageRecieved());
       });
+
+    this.store
+      .pipe(takeUntil(this.destroy$), select(getHasSearchFilters))
+      .subscribe((hasSearchFilters) => {
+        this.hasSearchFilters = hasSearchFilters;
+      });
   }
 
   ngOnDestroy(): void {
@@ -52,6 +59,8 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   onScrollDown() {
-    this.store.dispatch(PRODUCT_ACTIONS.loadMoreProducts());
+    if (!this.hasSearchFilters) {
+      this.store.dispatch(PRODUCT_ACTIONS.loadMoreProducts());
+    }
   }
 }

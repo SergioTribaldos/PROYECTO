@@ -16,11 +16,6 @@ export const selectProducts = createSelector(selectAllProducts, (products) => {
   return products;
 });
 
-export const isFirstLoading = createSelector(
-  selectProductState,
-  (products) => products.firstLoading
-);
-
 export const selectOneProduct = (_id: number) =>
   createSelector(selectAllProducts, (products) => {
     return products.find(({ id }) => id == _id);
@@ -34,4 +29,9 @@ export const isLoading = createSelector(
 export const getSkippedResults = createSelector(
   selectProductState,
   (products) => products.resultsSkipped
+);
+
+export const getHasSearchFilters = createSelector(
+  selectProductState,
+  (products) => products.hasSearchFilters
 );

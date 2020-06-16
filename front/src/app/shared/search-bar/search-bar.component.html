@@ -144,7 +144,7 @@
   <mat-menu #conditionMenu="matMenu" class="menu-container">
     <div (click)="$event.stopPropagation()">
       <h3>Elige estado del producto</h3>
-      <div class="chip-list-container">
+      <div class="chip-list-container" fxLayoutAlign="center">
         <app-chips-list
           [tagList]="conditionTagsList"
           [multipleSelectionAllowed]="false"

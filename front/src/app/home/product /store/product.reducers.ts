@@ -6,13 +6,13 @@ import { Product } from '../model/product';
 export interface ProductState extends EntityState<Product> {
   loading: boolean;
   resultsSkipped: number;
-  firstLoading: boolean;
+  hasSearchFilters: boolean;
 }
 export const adapter = createEntityAdapter<Product>();
 export const initialProductsState = adapter.getInitialState({
   loading: true,
   resultsSkipped: 0,
-  firstLoading: false,
+  hasSearchFilters: false,
 });
 
 export const productsReducer = createReducer(
@@ -21,12 +21,15 @@ export const productsReducer = createReducer(
     return adapter.addMany(action.products, {
       ...state,
       loading: false,
-      firstLoading: true,
     });
   }),
 
   on(PRODUCT_ACTIONS.searchProducts, (state) => {
     return { ...state, loading: true };
+  }),
+
+  on(PRODUCT_ACTIONS.setHasSearchFilters, (state, action) => {
+    return { ...state, hasSearchFilters: action.hasSearchFilters };
   }),
 
   on(PRODUCT_ACTIONS.searchProductsLoaded, (state, action) => {
@@ -40,8 +43,13 @@ export const productsReducer = createReducer(
       resultsSkipped: state.resultsSkipped + 5,
     };
   }),
+
   on(PRODUCT_ACTIONS.resetProducts, (state) => {
     return adapter.removeAll({ ...state });
+  }),
+
+  on(PRODUCT_ACTIONS.resetResultsSkipped, (state) => {
+    return { ...state, resultsSkipped: 0 };
   })
 );
 
