@@ -74,7 +74,6 @@ export class ChatComponent implements OnInit {
   sendFirstMessage(message: string) {
     this.newConversationSelected = false;
     const { productId, sellerId } = this.route.snapshot.queryParams;
-
     this.newConversationData = {
       productId,
       sellerId,
@@ -112,7 +111,6 @@ export class ChatComponent implements OnInit {
   selectInboxConversation(product: ProductMiniature) {
     this.newConversationSelected = false;
     this.selectedProduct = product.product;
-    console.log(this.selectedProduct);
     this.selectedChat = {
       conversationId: product.conversationId,
       recieverId:

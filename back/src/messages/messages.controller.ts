@@ -20,7 +20,6 @@ export class MessagesController {
   async startNewConversation(
     @Body() messageData: NewConversationDto,
   ): Promise<number> {
-    const result = await this.messageService.startConversation(messageData);
-    return result.id;
+    return await this.messageService.startConversation(messageData);
   }
 }
