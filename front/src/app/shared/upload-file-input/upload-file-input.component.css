@@ -65,7 +65,7 @@ img {
   display: none;
 }
 
-::ng-deep .mat-icon {
+.mat-icon {
   height: 20px !important;
   position: relative;
   top: 2px;
