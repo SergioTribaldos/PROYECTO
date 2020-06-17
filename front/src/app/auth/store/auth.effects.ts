@@ -41,6 +41,7 @@ export class AuthEffects {
       map(() => {
         this.store.dispatch(USER_PRODUCT_ACTIONS.resetUserProducts());
         this.store.dispatch(PRODUCT_ACTIONS.resetProducts());
+        this.store.dispatch(PRODUCT_ACTIONS.resetResultsSkipped());
         this.chatService.disconnect();
         localStorage.removeItem('userToken');
         this.router.navigate(['/login']);
