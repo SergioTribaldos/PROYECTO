@@ -31,7 +31,7 @@ export const QUERY_ADD_WHERE = {
     }),
   maxDistance: ({ partialQuery, searchParams, user }) =>
     partialQuery.andWhere(
-      `ROUND(ST_Distance_Sphere(point(${user.lat}, ${user.lng}),coords)/1000)>:maxDistance`,
+      `ROUND(ST_Distance_Sphere(point(${user.lat}, ${user.lng}),coords)/1000)<:maxDistance`,
       {
         maxDistance: searchParams.maxDistance,
       },
