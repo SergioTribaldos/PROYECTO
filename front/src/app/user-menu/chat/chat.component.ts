@@ -73,6 +73,7 @@ export class ChatComponent implements OnInit {
 
   sendFirstMessage(message: string) {
     this.newConversationSelected = false;
+    this.messageInput.nativeElement.value = '';
     const { productId, sellerId } = this.route.snapshot.queryParams;
     this.newConversationData = {
       productId,

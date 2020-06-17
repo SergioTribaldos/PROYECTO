@@ -43,14 +43,23 @@ export class NavbarComponent implements OnInit {
   }
   searchByName({ target: { value } }) {
     this.navigateTo('home/all');
-    if (!!value) {
-      this.store.dispatch(
-        PRODUCT_ACTIONS.searchProducts({ searchParams: { name: value } })
-      );
-    }
+    value = value.trim();
+
+    !!value ? this.searchProducts(value) : this.resetProductsAndLoadAgain();
   }
 
   navigateTo(route: string) {
     this.router.navigateByUrl(route);
+  }
+
+  searchProducts(value: string) {
+    this.store.dispatch(
+      PRODUCT_ACTIONS.searchProducts({ searchParams: { name: value } })
+    );
+  }
+
+  resetProductsAndLoadAgain() {
+    this.store.dispatch(PRODUCT_ACTIONS.resetResultsSkipped());
+    this.store.dispatch(PRODUCT_ACTIONS.loadProducts());
   }
 }
