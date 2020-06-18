@@ -7,7 +7,7 @@ import {
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { routerReducer } from '@ngrx/router-store';
-import { productsReducer } from '../home/product /store/product.reducers';
+import { productsReducer } from '../home/product/store/product.reducers';
 import { userProductsReducer } from '../user-menu/store/user-product.reducers';
 import { chatReducer } from '../user-menu/chat/store/chat.reducers';
 

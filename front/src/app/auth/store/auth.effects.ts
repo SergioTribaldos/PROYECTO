@@ -8,7 +8,7 @@ import { of, throwError } from 'rxjs';
 import { NotificationsService } from '@shared/notifications.service';
 import { User } from '../model/user';
 import { ProductService } from 'src/app/home/services/product.service';
-import { PRODUCT_ACTIONS } from 'src/app/home/product /store/product.actions';
+import { PRODUCT_ACTIONS } from 'src/app/home/product/store/product.actions';
 import { AppState } from 'src/app/reducers';
 import { Store, select } from '@ngrx/store';
 import { Socket } from 'ngx-socket-io';

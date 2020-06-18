@@ -1,4 +1,4 @@
-import { Product } from 'src/app/home/product /model/product';
+import { Product } from 'src/app/home/product/model/product';
 
 export interface ProductMiniature {
   conversationId: number;

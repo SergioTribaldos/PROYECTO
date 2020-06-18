@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Product } from '../product /model/product';
+import { Product } from '../product/model/product';
 import { select, Store } from '@ngrx/store';
 import {
   selectAllProducts,
   isLoading,
   getHasSearchFilters,
-} from '../product /store/product.selector';
+} from '../product/store/product.selector';
 import { AppState } from 'src/app/reducers';
-import { PRODUCT_ACTIONS } from '../product /store/product.actions';
+import { PRODUCT_ACTIONS } from '../product/store/product.actions';
 import { takeUntil } from 'rxjs/operators';
 import { CHAT_ACTIONS } from 'src/app/user-menu/chat/store/chat.actions';
 import { ChatService } from '@shared/chat.service';

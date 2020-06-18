@@ -1,9 +1,9 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
-import * as fromUserProducts from '../../home/product /store/product.reducers';
-import { ProductState } from '../../home/product /store/product.reducers';
+import * as fromUserProducts from '../../home/product/store/product.reducers';
+import { ProductState } from '../../home/product/store/product.reducers';
 import { EntityState } from '@ngrx/entity';
-import { Product } from '../../home/product /model/product';
+import { Product } from '../../home/product/model/product';
 
 export const selectProductState = createFeatureSelector<ProductState>(
   'User Products'

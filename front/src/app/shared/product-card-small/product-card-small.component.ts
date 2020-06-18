@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Product } from '../../home/product /model/product';
+import { Product } from '../../home/product/model/product';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
 import { Router } from '@angular/router';
-import { setConditionClass } from '../../home/product /constants/functions';
+import { setConditionClass } from '../../home/product/constants/functions';
 import { environment } from 'src/environments/environment';
 
 @Component({

@@ -10,10 +10,10 @@ import {
 } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { map, tap } from 'rxjs/operators';
-import { Product } from 'src/app/home/product /model/product';
-import { selectOneProduct } from 'src/app/home/product /store/product.selector';
-import { PRODUCT_ACTIONS } from 'src/app/home/product /store/product.actions';
-import { setConditionClass } from 'src/app/home/product /constants/functions';
+import { Product } from 'src/app/home/product/model/product';
+import { selectOneProduct } from 'src/app/home/product/store/product.selector';
+import { PRODUCT_ACTIONS } from 'src/app/home/product/store/product.actions';
+import { setConditionClass } from 'src/app/home/product/constants/functions';
 import { selectOneUserProduct } from 'src/app/user-menu/store/user-product.selectors';
 
 @Component({

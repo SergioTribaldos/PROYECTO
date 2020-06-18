@@ -19,7 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthGuard } from './auth/login/login.guard';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { ProductEffects } from './home/product /store/product.effects';
+import { ProductEffects } from './home/product/store/product.effects';
 import { UserProductEffects } from './user-menu/store/user-product.effects';
 
 const routes: Routes = [

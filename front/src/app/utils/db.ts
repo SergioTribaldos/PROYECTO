@@ -1,4 +1,4 @@
-import { Product, Category, Condition } from '../home/product /model/product';
+import { Product, Category, Condition } from '../home/product/model/product';
 /*
 export const db_products: Product[] = [
   {

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ProductUploadDto } from '../product /model/product.dto';
+import { ProductUploadDto } from '../product/model/product.dto';
 import { environment } from 'src/environments/environment';
-import { Product } from '../product /model/product';
+import { Product } from '../product/model/product';
 import { Observable, of } from 'rxjs';
 import { AppState } from 'src/app/reducers';
 import { Store, select } from '@ngrx/store';

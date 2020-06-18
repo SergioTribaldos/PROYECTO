@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { Product } from '../../home/product /model/product';
+import { Product } from '../../home/product/model/product';
 import { USER_PRODUCT_ACTIONS } from './user-product.actions';
 
 export interface ProductState extends EntityState<Product> {}

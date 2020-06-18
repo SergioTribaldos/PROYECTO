@@ -10,9 +10,9 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { MatDialogModule } from '@angular/material/dialog';
 
-import { ProductUploadComponent } from './product /product-upload/product-upload.component';
-import { ProductEffects } from './product /store/product.effects';
-import { productsReducer } from './product /store/product.reducers';
+import { ProductUploadComponent } from './product/product-upload/product-upload.component';
+import { ProductEffects } from './product/store/product.effects';
+import { productsReducer } from './product/store/product.reducers';
 import { UserProductEffects } from '../user-menu/store/user-product.effects';
 import { userProductsReducer } from '../user-menu/store/user-product.reducers';
 import { MainComponent } from './main/main.component';
