@@ -32,6 +32,7 @@ export enum Category {
   Percusion = 'Percusion',
   Teclados = 'Teclados',
   pa = 'Sistemas P.A',
+  Vientos = 'Vientos',
 }
 export enum Condition {
   mint = 'Nuevo',
@@ -62,4 +63,13 @@ export const ProductTags = {
   ],
   Percusion: ['Kit', 'Timbal', 'Electrónica', 'Caja', 'Bombo'],
   Teclados: ['Hammond', 'Eléctrico', 'Clásico', 'Efectos', 'Piano'],
+  Vientos: [
+    'Viento madera',
+    'Viento metal',
+    'Saxofon',
+    'Oboe',
+    'Flauta',
+    'Trompeta',
+    'Trombon',
+  ],
 };
