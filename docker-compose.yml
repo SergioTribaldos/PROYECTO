@@ -1,0 +1,26 @@
+version: "3"
+services:
+  front:
+    image: front1:latest
+    ports:
+      - 4200:80
+  back:
+    depends_on:
+      - db
+    image: back-nest:latest
+    ports:
+      - 3000:3000
+  db:
+    image: mysql:5.7
+    volumes:
+      - "./.mysql-data/db:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_DATABASE: "PROYECTO"
+      MYSQL_USER: "SERGIO"
+      MYSQL_PASSWORD: "1234"
+      MYSQL_ROOT_PASSWORD: "1234"
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
